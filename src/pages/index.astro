@@ -1,62 +1,196 @@
 ---
 ---
 
-<div class="min-h-screen bg-zinc-950 text-white">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHADES WORLD | Premium Sunglasses in Abuja</title>
+  <meta name="description" content="Discover premium sunglasses and optical frames in Abuja. Shop our exclusive collection of luxury eyewear." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-zinc-950 text-white selection:bg-amber-500/30 font-sans">
   <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-zinc-800">
+  <nav class="fixed top-0 w-full bg-zinc-950/60 backdrop-blur-xl z-50 border-b border-white/5 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <span class="text-3xl">🕶️</span>
-        <h1 class="text-2xl font-bold tracking-tight">SHADES WORLD</h1>
+      <div class="flex items-center gap-3 group cursor-pointer">
+        <span class="text-3xl group-hover:rotate-12 transition-transform duration-300">🕶️</span>
+        <h1 class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">SHADES WORLD</h1>
       </div>
-      <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
-        <a href="/shop" class="hover:text-amber-400 transition">Shop</a>
-        <a href="#about" class="hover:text-amber-400 transition">About</a>
-        <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+      <div class="hidden md:flex gap-10 text-sm uppercase tracking-[0.2em] font-medium text-zinc-400">
+        <a href="/shop" class="hover:text-amber-400 transition-colors duration-300">Shop</a>
+        <a href="#about" class="hover:text-amber-400 transition-colors duration-300">About</a>
+        <a href="#contact" class="hover:text-amber-400 transition-colors duration-300">Contact</a>
       </div>
       <a href="https://wa.me/2349112014959" target="_blank" 
-         class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-full text-sm font-medium flex items-center gap-2">
-        <span>💬</span> WhatsApp
+         class="bg-white/10 hover:bg-amber-500 px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 border border-white/10 hover:border-amber-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:text-black">
+        <span class="text-lg">💬</span> WhatsApp
       </a>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="pt-24 pb-20 bg-gradient-to-br from-zinc-900 to-black">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">SHADE YOUR WORLD</h2>
-      <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-10">Premium Sunglasses & Optical Frames in Abuja</p>
-      <a href="/shop" class="inline-block bg-white text-black px-10 py-4 rounded-full text-lg font-semibold hover:bg-amber-400 transition">Shop Collection</a>
+  <section class="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="/images/hero.png" alt="Futuristic Sunglasses" class="w-full h-full object-cover opacity-40 blur-[2px] scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-zinc-950/80 to-zinc-950"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-sm font-medium tracking-widest backdrop-blur-sm">
+        NEW COLLECTION 2026
+      </div>
+      <h2 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
+        SHADE <br class="md:hidden" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">YOUR WORLD</span>
+      </h2>
+      <p class="text-lg md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-10 font-light">
+        Experience unparalleled clarity and style. Premium sunglasses & optical frames curated for the modern visionary in Abuja.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/shop" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full text-lg font-bold hover:bg-amber-400 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+          Explore Collection
+        </a>
+        <a href="#about" class="w-full sm:w-auto bg-white/5 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white/10 border border-white/10 transition-all duration-300 backdrop-blur-sm">
+          Our Story
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- Products -->
-  <section id="shop" class="py-20 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-6">
-      <h3 class="text-4xl font-bold text-center mb-12">Featured Shades</h3>
+  <section id="shop" class="py-24 bg-zinc-950 relative">
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div>
+          <h3 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Featured Shades</h3>
+          <p class="text-zinc-400 text-lg max-w-md">Discover our most sought-after pieces, blending timeless design with contemporary aesthetics.</p>
+        </div>
+        <a href="/shop" class="text-amber-400 font-medium flex items-center gap-2 hover:text-amber-300 transition-colors group">
+          View Full Catalog <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Products will go here -->
-        <div class="bg-zinc-800 rounded-3xl overflow-hidden group">
-          <div class="h-80 bg-zinc-700 flex items-center justify-center text-6xl">🕶️</div>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold">Wayfarer Classic</h4>
-            <p class="text-amber-400 text-2xl font-bold mt-1">₦18,500</p>
-            <a href="/checkout" 
-                    class="mt-6 w-full block text-center bg-white text-black py-3 rounded-2xl font-medium hover:bg-amber-400 transition">
-              Buy Now
-            </a>
+        
+        <!-- Product 1 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <img src="/images/product1.png" alt="Wayfarer Classic" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 text-zinc-300">
+              BEST SELLER
+            </div>
+          </div>
+          <div class="px-2">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Wayfarer Classic</h4>
+            </div>
+            <p class="text-zinc-400 text-sm mb-4">Timeless black acetate frames with polarized lenses.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-2xl font-light tracking-tight">₦18,500</p>
+              <a href="/checkout" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
           </div>
         </div>
-        <!-- Add more cards similarly -->
+
+        <!-- Product 2 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <img src="/images/product2.png" alt="Gold Aviators" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+          </div>
+          <div class="px-2">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Gold Aviators</h4>
+            </div>
+            <p class="text-zinc-400 text-sm mb-4">Sleek gold frames with dark gradient lenses.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-2xl font-light tracking-tight">₦22,000</p>
+              <a href="/checkout" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <img src="/images/hero.png" alt="Cyberpunk Vision" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-4 right-4 bg-amber-500/20 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-amber-500/30 text-amber-400">
+              LIMITED
+            </div>
+          </div>
+          <div class="px-2">
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Cyberpunk Vision</h4>
+            </div>
+            <p class="text-zinc-400 text-sm mb-4">Futuristic wraparound frames for the bold.</p>
+            <div class="flex justify-between items-center">
+              <p class="text-2xl font-light tracking-tight">₦28,500</p>
+              <a href="/checkout" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black py-12 border-t border-zinc-800">
-    <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
-      <p>© 2026 Shades World NG • Abuja, Nigeria</p>
-      <p class="mt-2">Suite S005, KingFem Plaza • +234 911 201 4959</p>
+  <footer class="bg-zinc-950 py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-2xl">🕶️</span>
+            <h2 class="text-xl font-bold tracking-tight">SHADES WORLD</h2>
+          </div>
+          <p class="text-zinc-400 text-sm leading-relaxed max-w-xs">
+            Elevating your vision with premium, curated eyewear. Based in Abuja, serving style worldwide.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6 text-white tracking-widest text-sm uppercase">Quick Links</h4>
+          <ul class="space-y-3 text-sm text-zinc-400">
+            <li><a href="/shop" class="hover:text-amber-400 transition-colors">Shop Collection</a></li>
+            <li><a href="#about" class="hover:text-amber-400 transition-colors">Our Story</a></li>
+            <li><a href="#contact" class="hover:text-amber-400 transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-6 text-white tracking-widest text-sm uppercase">Visit Us</h4>
+          <address class="text-zinc-400 text-sm not-italic space-y-2">
+            <p>Suite S005, KingFem Plaza</p>
+            <p>Abuja, Nigeria</p>
+            <p class="pt-4 text-white">Call/WhatsApp:</p>
+            <a href="https://wa.me/2349112014959" class="text-amber-400 hover:text-amber-300 transition-colors inline-block">+234 911 201 4959</a>
+          </address>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-600">
+        <p>© 2026 Shades World NG. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-zinc-300 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-zinc-300 transition-colors">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
-</div>
+</body>
+</html>
