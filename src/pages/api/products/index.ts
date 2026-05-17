@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { products } from '../../../data/products.ts';
 
+export const prerender = false;
+
 export const GET: APIRoute = async () => {
   return new Response(JSON.stringify(products), {
     headers: { 'Content-Type': 'application/json' },

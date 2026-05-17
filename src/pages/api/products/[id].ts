@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { products } from '../../../data/products.ts';
 
+export const prerender = false;
+
 export const PUT: APIRoute = async ({ request, params }) => {
   const id = parseInt(params.id || '');
   if (isNaN(id)) {
