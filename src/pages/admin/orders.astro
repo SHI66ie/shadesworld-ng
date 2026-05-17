@@ -1,0 +1,73 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+---
+
+<AdminLayout title="Manage Orders">
+  <div class="flex justify-between items-center mb-8">
+    <p class="text-zinc-400">View and process customer orders.</p>
+  </div>
+
+  <!-- Search and Filters -->
+  <div class="flex flex-col md:flex-row gap-4 mb-8">
+    <div class="flex-1">
+      <input type="text" placeholder="Search orders by ID or customer name..." class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition" />
+    </div>
+    <select class="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition">
+      <option value="all">All Statuses</option>
+      <option value="pending">Pending</option>
+      <option value="processing">Processing</option>
+      <option value="shipped">Shipped</option>
+      <option value="delivered">Delivered</option>
+    </select>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-zinc-950/50 border-b border-zinc-800 text-zinc-400 text-sm">
+          <th class="p-4 font-medium">Order ID</th>
+          <th class="p-4 font-medium">Date</th>
+          <th class="p-4 font-medium">Customer</th>
+          <th class="p-4 font-medium">Total</th>
+          <th class="p-4 font-medium">Status</th>
+          <th class="p-4 font-medium text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-zinc-800">
+        <!-- Order Row 1 -->
+        <tr class="hover:bg-zinc-800/50 transition">
+          <td class="p-4 font-medium text-white">#ORD-0091</td>
+          <td class="p-4 text-sm text-zinc-400">May 17, 2026</td>
+          <td class="p-4">
+            <p class="text-sm text-white">John Doe</p>
+            <p class="text-xs text-zinc-500">john@example.com</p>
+          </td>
+          <td class="p-4 font-medium text-amber-400">₦18,500</td>
+          <td class="p-4">
+            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-medium">Pending</span>
+          </td>
+          <td class="p-4 text-right">
+            <button class="text-amber-400 hover:text-amber-300 transition px-2">View</button>
+          </td>
+        </tr>
+        <!-- Order Row 2 -->
+        <tr class="hover:bg-zinc-800/50 transition">
+          <td class="p-4 font-medium text-white">#ORD-0090</td>
+          <td class="p-4 text-sm text-zinc-400">May 16, 2026</td>
+          <td class="p-4">
+            <p class="text-sm text-white">Sarah Smith</p>
+            <p class="text-xs text-zinc-500">sarah@example.com</p>
+          </td>
+          <td class="p-4 font-medium text-amber-400">₦40,500</td>
+          <td class="p-4">
+            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full text-xs font-medium">Shipped</span>
+          </td>
+          <td class="p-4 text-right">
+            <button class="text-amber-400 hover:text-amber-300 transition px-2">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</AdminLayout>
