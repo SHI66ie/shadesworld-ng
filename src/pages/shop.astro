@@ -1,174 +1,238 @@
 ---
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Shop Collection | Shades World</title>
-  </head>
-  <body class="min-h-screen bg-zinc-950 text-white font-sans antialiased flex flex-col">
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-zinc-800">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-          <span class="text-3xl">🕶️</span>
-          <a href="/" class="text-2xl font-bold tracking-tight">SHADES WORLD</a>
-        </div>
-        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
-          <a href="/shop" class="text-amber-400 transition">Shop</a>
-          <a href="/#about" class="hover:text-amber-400 transition">About</a>
-          <a href="/#contact" class="hover:text-amber-400 transition">Contact</a>
-        </div>
-        <a href="/checkout" class="bg-amber-400 text-black hover:bg-amber-500 px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition">
-          🛒 Cart
-        </a>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Collection | Shades World</title>
+  <meta name="description" content="Discover premium sunglasses and optical frames in Abuja. Shop our exclusive collection of luxury eyewear." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-zinc-950 text-white selection:bg-amber-500/30 font-sans flex flex-col">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-zinc-950/60 backdrop-blur-xl z-50 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center gap-3 group cursor-pointer">
+        <span class="text-3xl group-hover:rotate-12 transition-transform duration-300">🕶️</span>
+        <h1 class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">SHADES WORLD</h1>
+      </a>
+      <div class="hidden md:flex gap-10 text-sm uppercase tracking-[0.2em] font-medium text-zinc-400">
+        <a href="/shop" class="text-amber-400 transition-colors duration-300">Shop</a>
+        <a href="/#about" class="hover:text-amber-400 transition-colors duration-300">About</a>
+        <a href="/#contact" class="hover:text-amber-400 transition-colors duration-300">Contact</a>
       </div>
-    </nav>
+      <a href="https://wa.me/2349112014959" target="_blank" 
+         class="bg-white/10 hover:bg-amber-500 px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 border border-white/10 hover:border-amber-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:text-black">
+        <span class="text-lg">💬</span> WhatsApp
+      </a>
+    </div>
+  </nav>
 
-    <!-- Shop Header -->
-    <header class="pt-32 pb-12 bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-zinc-800">
-      <div class="max-w-7xl mx-auto px-6 text-center">
-        <h1 class="text-5xl font-bold tracking-tight mb-4">Our Collection</h1>
-        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">Explore our premium selection of sunglasses and optical frames curated for your perfect look.</p>
+  <!-- Shop Header -->
+  <header class="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden border-b border-white/5">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-zinc-900 via-zinc-950/80 to-zinc-950"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">Our Collection</h1>
+      <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-light">Explore our premium selection of sunglasses and optical frames curated for your perfect look.</p>
+    </div>
+    
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+  </header>
+
+  <!-- Shop Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-12 w-full relative z-10">
+    
+    <!-- Filters Sidebar -->
+    <aside class="w-full lg:w-1/4 space-y-10">
+      <div class="bg-zinc-900/30 p-6 rounded-3xl border border-white/5">
+        <h3 class="text-sm font-bold mb-6 uppercase tracking-[0.2em] text-white">Categories</h3>
+        <ul class="space-y-4">
+          <li><a href="#" class="text-amber-400 font-medium flex justify-between items-center group">All Shades <span class="bg-amber-500/10 border border-amber-500/20 text-xs py-1 px-2.5 rounded-full group-hover:bg-amber-500/20 transition-colors">24</span></a></li>
+          <li><a href="#" class="text-zinc-400 hover:text-white transition-colors flex justify-between items-center group">Men <span class="bg-zinc-800 border border-white/5 text-xs py-1 px-2.5 rounded-full group-hover:bg-zinc-700 transition-colors">8</span></a></li>
+          <li><a href="#" class="text-zinc-400 hover:text-white transition-colors flex justify-between items-center group">Women <span class="bg-zinc-800 border border-white/5 text-xs py-1 px-2.5 rounded-full group-hover:bg-zinc-700 transition-colors">12</span></a></li>
+          <li><a href="#" class="text-zinc-400 hover:text-white transition-colors flex justify-between items-center group">Unisex <span class="bg-zinc-800 border border-white/5 text-xs py-1 px-2.5 rounded-full group-hover:bg-zinc-700 transition-colors">4</span></a></li>
+          <li><a href="#" class="text-zinc-400 hover:text-white transition-colors flex justify-between items-center group">Optical Frames <span class="bg-zinc-800 border border-white/5 text-xs py-1 px-2.5 rounded-full group-hover:bg-zinc-700 transition-colors">6</span></a></li>
+        </ul>
       </div>
-    </header>
-
-    <!-- Shop Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10 w-full">
       
-      <!-- Filters Sidebar -->
-      <aside class="w-full lg:w-1/4 space-y-8">
-        <div>
-          <h3 class="text-lg font-semibold mb-4 uppercase tracking-wider text-zinc-300">Categories</h3>
-          <ul class="space-y-3">
-            <li><a href="#" class="text-amber-400 font-medium flex justify-between">All Shades <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">24</span></a></li>
-            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Men <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">8</span></a></li>
-            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Women <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">12</span></a></li>
-            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Unisex <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">4</span></a></li>
-            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Optical Frames <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">6</span></a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="text-lg font-semibold mb-4 uppercase tracking-wider text-zinc-300">Price Range</h3>
-          <ul class="space-y-3">
-            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> Under ₦10,000</label></li>
-            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> ₦10,000 - ₦20,000</label></li>
-            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> ₦20,000 - ₦50,000</label></li>
-            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> Over ₦50,000</label></li>
-          </ul>
-        </div>
-      </aside>
+      <div class="bg-zinc-900/30 p-6 rounded-3xl border border-white/5">
+        <h3 class="text-sm font-bold mb-6 uppercase tracking-[0.2em] text-white">Price Range</h3>
+        <ul class="space-y-4">
+          <li><label class="flex items-center gap-4 text-zinc-400 hover:text-white cursor-pointer group transition-colors"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded transition-all" /> <span class="group-hover:translate-x-1 transition-transform">Under ₦10,000</span></label></li>
+          <li><label class="flex items-center gap-4 text-zinc-400 hover:text-white cursor-pointer group transition-colors"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded transition-all" /> <span class="group-hover:translate-x-1 transition-transform">₦10,000 - ₦20,000</span></label></li>
+          <li><label class="flex items-center gap-4 text-zinc-400 hover:text-white cursor-pointer group transition-colors"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded transition-all" /> <span class="group-hover:translate-x-1 transition-transform">₦20,000 - ₦50,000</span></label></li>
+          <li><label class="flex items-center gap-4 text-zinc-400 hover:text-white cursor-pointer group transition-colors"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded transition-all" /> <span class="group-hover:translate-x-1 transition-transform">Over ₦50,000</span></label></li>
+        </ul>
+      </div>
+    </aside>
 
-      <!-- Product Grid -->
-      <div class="w-full lg:w-3/4">
-        
-        <div class="flex justify-between items-center mb-8">
-          <p class="text-zinc-400">Showing 1-6 of 24 products</p>
-          <select class="bg-zinc-900 border border-zinc-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-amber-400">
+    <!-- Product Grid -->
+    <div class="w-full lg:w-3/4">
+      
+      <div class="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4">
+        <p class="text-zinc-400 font-light">Showing <span class="text-white font-medium">1-6</span> of <span class="text-white font-medium">24</span> products</p>
+        <div class="relative group">
+          <select class="appearance-none bg-zinc-900/80 border border-white/10 text-white rounded-2xl px-6 py-3 pr-12 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/50 transition-all cursor-pointer backdrop-blur-md">
             <option>Sort by: Featured</option>
             <option>Price: Low to High</option>
             <option>Price: High to Low</option>
             <option>Newest Arrivals</option>
           </select>
+          <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-zinc-400 group-hover:text-white transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        
+        <!-- Product 1 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <img src="/images/product1.png" alt="Wayfarer Classic" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2327272a\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🕶️</text></svg>'" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-4 left-4 bg-amber-500/20 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-amber-500/30 text-amber-400">
+              BESTSELLER
+            </div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Wayfarer Classic</h4>
+            <div class="flex justify-between items-end">
+              <p class="text-2xl font-light tracking-tight">₦18,500</p>
+              <button onclick="window.open('https://wa.me/2349112014959?text=I%20want%20to%20order%20the%20Wayfarer%20Classic', '_blank')" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          
-          <!-- Product 1 -->
-          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
-            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
-              <span class="absolute top-4 left-4 bg-amber-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Bestseller</span>
-              🕶️
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-semibold">Wayfarer Classic</h4>
-              <p class="text-amber-400 text-2xl font-bold mt-1">₦18,500</p>
-              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+        <!-- Product 2 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <img src="/images/product2.png" alt="Aviator Gold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2327272a\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>😎</text></svg>'" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Aviator Gold</h4>
+            <div class="flex justify-between items-end">
+              <p class="text-2xl font-light tracking-tight">₦22,000</p>
+              <button onclick="window.open('https://wa.me/2349112014959?text=I%20want%20to%20order%20the%20Aviator%20Gold', '_blank')" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
             </div>
           </div>
-
-          <!-- Product 2 -->
-          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
-            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
-              😎
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-semibold">Aviator Gold</h4>
-              <p class="text-amber-400 text-2xl font-bold mt-1">₦22,000</p>
-              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
-            </div>
-          </div>
-
-          <!-- Product 3 -->
-          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
-            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
-              <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">New</span>
-              🤓
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-semibold">Retro Round</h4>
-              <p class="text-amber-400 text-2xl font-bold mt-1">₦15,000</p>
-              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
-            </div>
-          </div>
-
-          <!-- Product 4 -->
-          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
-            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
-              🥽
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-semibold">Sport Shield</h4>
-              <p class="text-amber-400 text-2xl font-bold mt-1">₦25,500</p>
-              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
-            </div>
-          </div>
-
-          <!-- Product 5 -->
-          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
-            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
-              🕶️
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-semibold">Cat Eye Vintage</h4>
-              <p class="text-amber-400 text-2xl font-bold mt-1">₦19,000</p>
-              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
-            </div>
-          </div>
-
-          <!-- Product 6 -->
-          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
-            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
-              👓
-            </div>
-            <div class="p-6">
-              <h4 class="text-xl font-semibold">Clear Optical</h4>
-              <p class="text-amber-400 text-2xl font-bold mt-1">₦14,500</p>
-              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Pagination -->
-        <div class="mt-12 flex justify-center gap-2">
-          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-800 text-white hover:bg-amber-400 hover:text-black transition">1</button>
-          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">2</button>
-          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">3</button>
-          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">...</button>
-          <button class="px-4 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">Next &rarr;</button>
+        <!-- Product 3 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <img src="/images/hero.png" alt="Retro Round" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2327272a\'/><text x=\'50\' y=\'50\' font-size=\'40\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🤓</text></svg>'" />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-4 left-4 bg-red-500/20 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-red-500/30 text-red-400">
+              NEW
+            </div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Retro Round</h4>
+            <div class="flex justify-between items-end">
+              <p class="text-2xl font-light tracking-tight">₦15,000</p>
+              <button onclick="window.open('https://wa.me/2349112014959?text=I%20want%20to%20order%20the%20Retro%20Round', '_blank')" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <div class="w-full h-full flex items-center justify-center text-6xl opacity-50 group-hover:scale-110 transition-transform duration-700">🥽</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Sport Shield</h4>
+            <div class="flex justify-between items-end">
+              <p class="text-2xl font-light tracking-tight">₦25,500</p>
+              <button onclick="window.open('https://wa.me/2349112014959?text=I%20want%20to%20order%20the%20Sport%20Shield', '_blank')" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <div class="w-full h-full flex items-center justify-center text-6xl opacity-50 group-hover:scale-110 transition-transform duration-700">🕶️</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Cat Eye Vintage</h4>
+            <div class="flex justify-between items-end">
+              <p class="text-2xl font-light tracking-tight">₦19,000</p>
+              <button onclick="window.open('https://wa.me/2349112014959?text=I%20want%20to%20order%20the%20Cat%20Eye%20Vintage', '_blank')" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+            <div class="w-full h-full flex items-center justify-center text-6xl opacity-50 group-hover:scale-110 transition-transform duration-700">👓</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Clear Optical</h4>
+            <div class="flex justify-between items-end">
+              <p class="text-2xl font-light tracking-tight">₦14,500</p>
+              <button onclick="window.open('https://wa.me/2349112014959?text=I%20want%20to%20order%20the%20Clear%20Optical', '_blank')" 
+                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
 
       </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-zinc-800 mt-auto">
-      <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
-        <p>© 2026 Shades World NG • Abuja, Nigeria</p>
+      <!-- Pagination -->
+      <div class="mt-16 flex justify-center gap-3">
+        <button class="w-12 h-12 rounded-2xl flex items-center justify-center bg-amber-400 text-black font-bold shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all">1</button>
+        <button class="w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-900/50 border border-white/5 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all">2</button>
+        <button class="w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-900/50 border border-white/5 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all">3</button>
+        <button class="w-12 h-12 rounded-2xl flex items-center justify-center bg-zinc-900/50 border border-white/5 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all">...</button>
+        <button class="px-6 h-12 rounded-2xl flex items-center justify-center bg-zinc-900/50 border border-white/5 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all group">
+          Next <span class="group-hover:translate-x-1 transition-transform ml-2">→</span>
+        </button>
       </div>
-    </footer>
-  </body>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-950 py-12 border-t border-white/5 mt-auto relative z-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-500 text-sm">
+      <p>© 2026 Shades World NG • Abuja, Nigeria</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-amber-400 transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-amber-400 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
