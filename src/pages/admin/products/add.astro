@@ -72,11 +72,12 @@ import AdminLayout from '../../../layouts/AdminLayout.astro';
       <!-- Media Section -->
       <div>
         <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Product Media</h3>
-        <div class="border-2 border-dashed border-zinc-700 hover:border-amber-400 bg-zinc-950 rounded-2xl p-12 text-center transition cursor-pointer flex flex-col items-center justify-center">
-          <span class="text-4xl mb-4">📸</span>
+        <label class="border-2 border-dashed border-zinc-700 hover:border-amber-400 bg-zinc-950 rounded-2xl p-12 text-center transition cursor-pointer flex flex-col items-center justify-center relative overflow-hidden group">
+          <input type="file" accept="image/*" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+          <span class="text-4xl mb-4 group-hover:scale-110 transition-transform">📸</span>
           <p class="text-zinc-300 font-medium mb-1">Click to upload images</p>
           <p class="text-xs text-zinc-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
-        </div>
+        </label>
       </div>
 
       <div class="flex justify-end gap-4 pt-6 border-t border-zinc-800">
