@@ -1,0 +1,129 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { products } from '../../../data/products.ts';
+
+const productId = Astro.url.searchParams.get('id');
+const product = products.find(p => p.id === parseInt(productId || '0'));
+---
+
+<AdminLayout title="Edit Product">
+  {product ? (
+    <div class="mb-8 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="/admin/products" class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-700 transition">
+          ←
+        </a>
+        <p class="text-zinc-400">Edit product details for <span class="text-white font-medium">{product.name}</span></p>
+      </div>
+    </div>
+
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-4xl">
+      <form id="productForm" class="space-y-8">
+        <input type="hidden" name="id" value={product.id} />
+        
+        <!-- Basic Info Section -->
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Basic Information</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-zinc-400 mb-2">Product Name</label>
+              <input type="text" name="name" required value={product.name} class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-zinc-400 mb-2">Description</label>
+              <textarea name="description" required rows="4" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition">{product.description}</textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-zinc-400 mb-2">Category</label>
+              <select name="category" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition">
+                <option value="Men" selected={product.category === 'Men'}>Men</option>
+                <option value="Women" selected={product.category === 'Women'}>Women</option>
+                <option value="Unisex" selected={product.category === 'Unisex'}>Unisex</option>
+                <option value="Optical Frames" selected={product.category === 'Optical Frames'}>Optical Frames</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-zinc-400 mb-2">SKU (Stock Keeping Unit)</label>
+              <input type="text" name="sku" value={product.sku} class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing & Inventory -->
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Pricing & Inventory</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-zinc-400 mb-2">Price (₦)</label>
+              <input type="number" name="price" required value={product.price} class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-zinc-400 mb-2">Stock Quantity</label>
+              <input type="number" name="stock" required value={product.stock} class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Media Section -->
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Product Media</h3>
+          <label class="border-2 border-dashed border-zinc-700 hover:border-amber-400 bg-zinc-950 rounded-2xl p-12 text-center transition cursor-pointer flex flex-col items-center justify-center relative overflow-hidden group">
+            <input type="file" accept="image/*" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+            <span class="text-4xl mb-4 group-hover:scale-110 transition-transform">📸</span>
+            <p class="text-zinc-300 font-medium mb-1">Click to upload images</p>
+            <p class="text-xs text-zinc-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+          </label>
+        </div>
+
+        <div class="flex justify-end gap-4 pt-6 border-t border-zinc-800">
+          <a href="/admin/products" class="px-8 py-3 rounded-xl font-semibold bg-zinc-800 text-white hover:bg-zinc-700 transition">
+            Cancel
+          </a>
+          <button type="submit" class="bg-amber-400 text-black px-8 py-3 rounded-xl font-bold hover:bg-amber-500 transition">
+            Update Product
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script define:vars={{ productId }}>
+      document.getElementById('productForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const data = {
+          name: formData.get('name'),
+          description: formData.get('description'),
+          category: formData.get('category'),
+          sku: formData.get('sku'),
+          price: formData.get('price'),
+          stock: formData.get('stock'),
+          image: '/images/hero.png',
+        };
+        
+        try {
+          const response = await fetch(`/api/products/${productId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          
+          if (response.ok) {
+            alert('Product updated successfully');
+            window.location.href = '/admin/products';
+          } else {
+            alert('Failed to update product');
+          }
+        } catch (error) {
+          console.error('Error updating product:', error);
+          alert('Error updating product');
+        }
+      });
+    </script>
+  ) : (
+    <div class="text-center py-16">
+      <p class="text-zinc-400 mb-4">Product not found</p>
+      <a href="/admin/products" class="text-amber-400 hover:text-amber-300">← Back to Products</a>
+    </div>
+  )}
+</AdminLayout>

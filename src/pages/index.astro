@@ -1,4 +1,5 @@
 ---
+import { products } from '../data/products.ts';
 ---
 
 <!DOCTYPE html>
@@ -78,76 +79,37 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <!-- Product 1 -->
-        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
-          <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
-            <img src="/images/product1.png" alt="Wayfarer Classic" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
-            <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 text-zinc-300">
-              BEST SELLER
+        {products.slice(0, 3).map((product) => (
+          <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+            <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
+              <img src={product.image} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
+              {product.id === 1 && (
+                <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 text-zinc-300">
+                  BEST SELLER
+                </div>
+              )}
+              {product.id === 7 && (
+                <div class="absolute top-4 right-4 bg-amber-500/20 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-amber-500/30 text-amber-400">
+                  LIMITED
+                </div>
+              )}
+            </div>
+            <div class="px-2">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">{product.name}</h4>
+              </div>
+              <p class="text-zinc-400 text-sm mb-4">{product.description}</p>
+              <div class="flex justify-between items-center">
+                <p class="text-2xl font-light tracking-tight">₦{product.price.toLocaleString()}</p>
+                <a href="/checkout" 
+                        class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </div>
             </div>
           </div>
-          <div class="px-2">
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Wayfarer Classic</h4>
-            </div>
-            <p class="text-zinc-400 text-sm mb-4">Timeless black acetate frames with polarized lenses.</p>
-            <div class="flex justify-between items-center">
-              <p class="text-2xl font-light tracking-tight">₦18,500</p>
-              <a href="/checkout" 
-                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
-          <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
-            <img src="/images/product2.png" alt="Gold Aviators" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
-          </div>
-          <div class="px-2">
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Gold Aviators</h4>
-            </div>
-            <p class="text-zinc-400 text-sm mb-4">Sleek gold frames with dark gradient lenses.</p>
-            <div class="flex justify-between items-center">
-              <p class="text-2xl font-light tracking-tight">₦22,000</p>
-              <a href="/checkout" 
-                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="group relative rounded-3xl bg-zinc-900/50 border border-white/5 p-4 hover:bg-zinc-800/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
-          <div class="relative h-80 rounded-2xl overflow-hidden mb-6 bg-zinc-800">
-            <img src="/images/hero.png" alt="Cyberpunk Vision" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
-            <div class="absolute top-4 right-4 bg-amber-500/20 backdrop-blur-md text-xs font-bold px-3 py-1.5 rounded-full border border-amber-500/30 text-amber-400">
-              LIMITED
-            </div>
-          </div>
-          <div class="px-2">
-            <div class="flex justify-between items-start mb-2">
-              <h4 class="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">Cyberpunk Vision</h4>
-            </div>
-            <p class="text-zinc-400 text-sm mb-4">Futuristic wraparound frames for the bold.</p>
-            <div class="flex justify-between items-center">
-              <p class="text-2xl font-light tracking-tight">₦28,500</p>
-              <a href="/checkout" 
-                      class="bg-white/10 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
+        ))}
       </div>
     </div>
   </section>
