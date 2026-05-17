@@ -1,0 +1,174 @@
+---
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Shop Collection | Shades World</title>
+  </head>
+  <body class="min-h-screen bg-zinc-950 text-white font-sans antialiased flex flex-col">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-zinc-800">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">🕶️</span>
+          <a href="/" class="text-2xl font-bold tracking-tight">SHADES WORLD</a>
+        </div>
+        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
+          <a href="/shop" class="text-amber-400 transition">Shop</a>
+          <a href="/#about" class="hover:text-amber-400 transition">About</a>
+          <a href="/#contact" class="hover:text-amber-400 transition">Contact</a>
+        </div>
+        <a href="/checkout" class="bg-amber-400 text-black hover:bg-amber-500 px-6 py-2 rounded-full text-sm font-semibold flex items-center gap-2 transition">
+          🛒 Cart
+        </a>
+      </div>
+    </nav>
+
+    <!-- Shop Header -->
+    <header class="pt-32 pb-12 bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-zinc-800">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold tracking-tight mb-4">Our Collection</h1>
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">Explore our premium selection of sunglasses and optical frames curated for your perfect look.</p>
+      </div>
+    </header>
+
+    <!-- Shop Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10 w-full">
+      
+      <!-- Filters Sidebar -->
+      <aside class="w-full lg:w-1/4 space-y-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4 uppercase tracking-wider text-zinc-300">Categories</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-amber-400 font-medium flex justify-between">All Shades <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">24</span></a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Men <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">8</span></a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Women <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">12</span></a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Unisex <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">4</span></a></li>
+            <li><a href="#" class="text-zinc-400 hover:text-white transition flex justify-between">Optical Frames <span class="bg-zinc-800 text-xs py-1 px-2 rounded-full">6</span></a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-4 uppercase tracking-wider text-zinc-300">Price Range</h3>
+          <ul class="space-y-3">
+            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> Under ₦10,000</label></li>
+            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> ₦10,000 - ₦20,000</label></li>
+            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> ₦20,000 - ₦50,000</label></li>
+            <li><label class="flex items-center gap-3 text-zinc-400 hover:text-white cursor-pointer"><input type="checkbox" class="accent-amber-400 w-4 h-4 bg-zinc-800 border-zinc-700 rounded" /> Over ₦50,000</label></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Product Grid -->
+      <div class="w-full lg:w-3/4">
+        
+        <div class="flex justify-between items-center mb-8">
+          <p class="text-zinc-400">Showing 1-6 of 24 products</p>
+          <select class="bg-zinc-900 border border-zinc-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-amber-400">
+            <option>Sort by: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest Arrivals</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          
+          <!-- Product 1 -->
+          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
+            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
+              <span class="absolute top-4 left-4 bg-amber-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase">Bestseller</span>
+              🕶️
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold">Wayfarer Classic</h4>
+              <p class="text-amber-400 text-2xl font-bold mt-1">₦18,500</p>
+              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
+            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
+              😎
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold">Aviator Gold</h4>
+              <p class="text-amber-400 text-2xl font-bold mt-1">₦22,000</p>
+              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
+            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
+              <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">New</span>
+              🤓
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold">Retro Round</h4>
+              <p class="text-amber-400 text-2xl font-bold mt-1">₦15,000</p>
+              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
+            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
+              🥽
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold">Sport Shield</h4>
+              <p class="text-amber-400 text-2xl font-bold mt-1">₦25,500</p>
+              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
+            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
+              🕶️
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold">Cat Eye Vintage</h4>
+              <p class="text-amber-400 text-2xl font-bold mt-1">₦19,000</p>
+              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="bg-zinc-900 rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition duration-300">
+            <div class="h-64 bg-zinc-800 flex items-center justify-center text-6xl relative">
+              👓
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold">Clear Optical</h4>
+              <p class="text-amber-400 text-2xl font-bold mt-1">₦14,500</p>
+              <a href="/checkout" class="mt-4 w-full block text-center bg-white text-black py-3 rounded-xl font-medium hover:bg-amber-400 transition shadow-lg shadow-white/5 hover:shadow-amber-400/20">Buy Now</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center gap-2">
+          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-800 text-white hover:bg-amber-400 hover:text-black transition">1</button>
+          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">2</button>
+          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">3</button>
+          <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">...</button>
+          <button class="px-4 h-10 rounded-lg flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:bg-zinc-800 transition">Next &rarr;</button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-zinc-800 mt-auto">
+      <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
+        <p>© 2026 Shades World NG • Abuja, Nigeria</p>
+      </div>
+    </footer>
+  </body>
+</html>
