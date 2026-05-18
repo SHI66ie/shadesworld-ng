@@ -4,5 +4,5 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://shadesworld.ng',
   integrations: [tailwind()],
-  output: 'hybrid',
+  output: 'static',
 });
