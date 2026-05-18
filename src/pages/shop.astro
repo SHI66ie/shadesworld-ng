@@ -29,7 +29,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
       </div>
       <div class="flex items-center gap-4">
         <ThemeToggle />
-        <a href="https://wa.me/8074007172" target="_blank" 
+        <a href="https://wa.me/2348074007172?text=Hi%20Shades%20World%2C%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%91%93" target="_blank" 
            class="bg-white/10 dark:bg-zinc-900 hover:bg-amber-500 px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 border border-white/10 dark:border-zinc-700 hover:border-amber-400 transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:text-black">
           <span class="text-lg">💬</span> WhatsApp
         </a>
@@ -118,7 +118,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
               <h4 class="text-xl font-bold text-white dark:text-zinc-900 group-hover:text-amber-400 transition-colors mb-2">{product.name}</h4>
               <div class="flex justify-between items-end">
                 <p class="text-2xl font-light tracking-tight">₦{product.price.toLocaleString()}</p>
-                <button onclick={`window.open('https://wa.me/8074007172?text=I%20want%20to%20order%20the%20${encodeURIComponent(product.name)}', '_blank')}`} 
+                <button onclick={`window.open('https://wa.me/2348074007172?text=I%20want%20to%20order%20the%20${encodeURIComponent(product.name)}', '_blank')}`} 
                         class="bg-white/10 dark:bg-zinc-900 hover:bg-amber-400 hover:text-black p-3 rounded-xl transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </button>
