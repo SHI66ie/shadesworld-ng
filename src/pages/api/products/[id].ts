@@ -21,6 +21,30 @@ async function saveProducts(products: any[]) {
   await store.setJSON('products', products);
 }
 
+export const GET: APIRoute = async ({ params }) => {
+  const id = parseInt(params.id || '');
+  if (isNaN(id)) {
+    return new Response(JSON.stringify({ error: 'Invalid product ID' }), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 400,
+    });
+  }
+  
+  const products = await getProducts();
+  const product = products.find((p: any) => p.id === id);
+  
+  if (!product) {
+    return new Response(JSON.stringify({ error: 'Product not found' }), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 404,
+    });
+  }
+  
+  return new Response(JSON.stringify(product), {
+    headers: { 'Content-Type': 'application/json' },
+  });
+};
+
 export const PUT: APIRoute = async ({ request, params }) => {
   const id = parseInt(params.id || '');
   if (isNaN(id)) {

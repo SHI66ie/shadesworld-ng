@@ -1,9 +1,29 @@
 ---
+export const prerender = false;
+
 import AdminLayout from '../../../layouts/AdminLayout.astro';
-import { products } from '../../../data/products.ts';
 
 const productId = Astro.url.searchParams.get('id');
-const product = products.find(p => p.id === parseInt(productId || '0'));
+let product = null;
+
+try {
+  const response = await fetch(new URL(`/api/products/${productId}`, Astro.url.origin).toString());
+  if (response.ok) {
+    product = await response.json();
+  }
+} catch (error) {
+  console.error('Failed to fetch product:', error);
+}
+
+// Fallback to static data if API fetch fails
+if (!product) {
+  try {
+    const { products: staticProducts } = await import('../../../data/products.ts');
+    product = staticProducts.find(p => p.id === parseInt(productId || '0'));
+  } catch (e) {
+    console.error('Failed to fetch from static data:', e);
+  }
+}
 ---
 
 <AdminLayout title="Edit Product">
