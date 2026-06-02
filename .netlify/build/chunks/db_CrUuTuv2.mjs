@@ -16,11 +16,8 @@ function ensureLocalDirs() {
     fs.mkdirSync(UPLOADS_DIR, { recursive: true });
   }
 }
-function isNetlify() {
-  return !!process.env.NETLIFY || !!process.env.NETLIFY_BLOBS_API_TOKEN && !!process.env.NETLIFY_IMAGES_KEY;
-}
 async function getProducts() {
-  if (isNetlify()) {
+  {
     try {
       const store = getStore(PRODUCTS_STORE_NAME);
       let products$1 = await store.get("products", { type: "json" });
@@ -52,7 +49,7 @@ async function getProducts() {
   return [...products];
 }
 async function saveProducts(products) {
-  if (isNetlify()) {
+  {
     try {
       const store = getStore(PRODUCTS_STORE_NAME);
       await store.setJSON("products", products);
@@ -71,7 +68,7 @@ async function saveProducts(products) {
   }
 }
 async function saveUploadedImage(filename, buffer, contentType) {
-  if (isNetlify()) {
+  {
     try {
       const store = getStore(IMAGES_STORE_NAME);
       await store.set(filename, buffer, {
@@ -96,7 +93,7 @@ async function saveUploadedImage(filename, buffer, contentType) {
   }
 }
 async function getUploadedImage(filename) {
-  if (isNetlify()) {
+  {
     try {
       const store = getStore(IMAGES_STORE_NAME);
       const result = await store.getWithMetadata(filename, { type: "arrayBuffer" });

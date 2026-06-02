@@ -21,10 +21,10 @@ function ensureLocalDirs() {
   }
 }
 
-// Helper to check if Netlify Blobs is functional
+// Helper to check if we should use Netlify Blobs or local filesystem
 function isNetlify() {
-  // If we are in local development without netlify CLI / credentials, Netlify Blobs will fail
-  return !!process.env.NETLIFY || (!!process.env.NETLIFY_BLOBS_API_TOKEN && !!process.env.NETLIFY_IMAGES_KEY);
+  // In development mode, use local filesystem. In production build (Netlify), use Blobs.
+  return !import.meta.env.DEV;
 }
 
 export async function getProducts(): Promise<any[]> {

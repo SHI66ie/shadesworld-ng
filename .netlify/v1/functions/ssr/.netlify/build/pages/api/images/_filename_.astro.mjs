@@ -1,4 +1,4 @@
-import { a as getUploadedImage } from '../../../chunks/db_BLpJ1mSh.mjs';
+import { a as getUploadedImage } from '../../../chunks/db_CrUuTuv2.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const prerender = false;
