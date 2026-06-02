@@ -33,16 +33,14 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Convert file to base64
+    // Convert file to ArrayBuffer
     const buffer = await file.arrayBuffer();
-    const base64 = Buffer.from(buffer).toString('base64');
-    const dataUrl = `data:${file.type};base64,${base64}`;
 
     // Store in Netlify Blobs with unique filename
     const store = getStore(STORE_NAME);
-    const filename = `${Date.now()}-${file.name}`;
+    const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
     
-    await store.set(filename, base64, {
+    await store.set(filename, buffer, {
       metadata: {
         contentType: file.type,
         originalName: file.name,
@@ -52,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         success: true,
-        imageUrl: dataUrl,
+        imageUrl: `/api/images/${filename}`,
         filename: filename,
       }),
       {

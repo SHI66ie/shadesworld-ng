@@ -1,0 +1,455 @@
+/* empty css                                       */
+import { i as createAstro, j as createComponent, r as renderComponent, o as renderTemplate, h as addAttribute, m as maybeRenderHead } from '../../../chunks/astro/server_BhlnreZN.mjs';
+import 'kleur/colors';
+import 'html-escaper';
+import { $ as $$AdminLayout } from '../../../chunks/AdminLayout_BNsUJNDJ.mjs';
+export { renderers } from '../../../renderers.mjs';
+
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
+var _a;
+const $$Astro = createAstro("https://shadesworld.ng");
+const prerender = false;
+const $$Edit = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Edit;
+  const productId = Astro2.url.searchParams.get("id");
+  let product = null;
+  try {
+    const response = await fetch(new URL(`/api/products/${productId}`, Astro2.url.origin).toString());
+    if (response.ok) {
+      product = await response.json();
+    }
+  } catch (error) {
+    console.error("Failed to fetch product:", error);
+  }
+  if (!product) {
+    try {
+      const { products: staticProducts } = await import('../../../chunks/products_BP3GvgAQ.mjs');
+      product = staticProducts.find((p) => p.id === parseInt(productId || "0"));
+    } catch (e) {
+      console.error("Failed to fetch from static data:", e);
+    }
+  }
+  return renderTemplate`${renderComponent($$result, "AdminLayout", $$AdminLayout, { "title": "Edit Product" }, { "default": async ($$result2) => renderTemplate`${product ? renderTemplate(_a || (_a = __template(["", '<div class="mb-8 flex items-center justify-between"> <div class="flex items-center gap-4"> <a href="/admin/products" class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-700 transition">\n\u2190\n</a> <p class="text-zinc-400">Edit product details for <span class="text-white font-medium">', '</span></p> </div> </div>\n\n    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-4xl"> <form id="productForm" class="space-y-8"> <input type="hidden" name="id"', '> <!-- Basic Info Section --> <div> <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Basic Information</h3> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div class="md:col-span-2"> <label class="block text-sm font-medium text-zinc-400 mb-2">Product Name</label> <input type="text" name="name" required', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> <div class="md:col-span-2"> <label class="block text-sm font-medium text-zinc-400 mb-2">Description</label> <textarea name="description" required rows="4" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition">', '</textarea> </div> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">Category</label> <select name="category" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> <option value="Men"', '>Men</option> <option value="Women"', '>Women</option> <option value="Unisex"', '>Unisex</option> <option value="Optical Frames"', '>Optical Frames</option> </select> </div> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">SKU (Stock Keeping Unit)</label> <input type="text" name="sku"', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> </div> </div> <!-- Pricing & Inventory --> <div> <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Pricing & Inventory</h3> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">Price (\u20A6)</label> <input type="number" name="price" required', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">Stock Quantity</label> <input type="number" name="stock" required', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> </div> </div> <!-- Media Section --> <div> <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Product Media</h3> <div class="space-y-4"> <!-- Upload Progress --> <div id="uploadProgress" class="hidden flex flex-col items-center justify-center py-8"> <div class="relative w-24 h-24 mb-4"> <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100"> <circle cx="50" cy="50" r="45" fill="none" stroke="#27272a" stroke-width="3"></circle> <circle id="progressCircle" cx="50" cy="50" r="45" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="282.7" stroke-dashoffset="282.7" stroke-linecap="round" class="transition-all duration-300"></circle> </svg> <div class="absolute inset-0 flex items-center justify-center"> <span id="progressPercent" class="text-sm font-bold text-amber-400">0%</span> </div> </div> <p id="progressText" class="text-zinc-300 font-medium">Uploading...</p> </div> <!-- Image Preview --> <div id="imagePreview" class="block"> <img id="previewImg"', ' alt="Preview" class="w-full max-w-md h-64 object-cover rounded-2xl border border-zinc-700"> <button type="button" id="removeImageBtn" class="mt-2 text-red-400 hover:text-red-300 text-sm">\u2715 Remove Image</button> </div> <!-- Upload Label --> <label id="uploadLabel" class="border-2 border-dashed border-zinc-700 hover:border-amber-400 bg-zinc-950 rounded-2xl p-12 text-center transition cursor-pointer flex flex-col items-center justify-center relative overflow-hidden group"> <input type="file" id="imageInput" name="productImage" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"> <span class="text-4xl mb-4 group-hover:scale-110 transition-transform">\u{1F4F8}</span> <p class="text-zinc-300 font-medium mb-1">Click to upload a new image</p> <p class="text-xs text-zinc-500">SVG, PNG, JPG or GIF (max. 5MB)</p> <div id="uploadStatus" class="mt-4 text-sm"></div> </label> <!-- Notification Toast --> <div id="uploadNotification" class="hidden fixed bottom-6 right-6 bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-pulse"> <span class="text-xl">\u2713</span> <span id="notificationText">Image uploaded successfully!</span> </div> <input type="hidden" id="imageUrlInput" name="imageUrl"', `> </div> </div> <div class="flex justify-end gap-4 pt-6 border-t border-zinc-800"> <a href="/admin/products" class="px-8 py-3 rounded-xl font-semibold bg-zinc-800 text-white hover:bg-zinc-700 transition">
+Cancel
+</a> <button type="submit" class="bg-amber-400 text-black px-8 py-3 rounded-xl font-bold hover:bg-amber-500 transition">
+Update Product
+</button> </div> </form> </div>
+
+    <script>
+      const productId = new URLSearchParams(window.location.search).get('id');
+      let uploadedImageUrl = '';
+
+      // Handle image upload
+      const imageInput = document.getElementById('imageInput');
+      const uploadLabel = document.getElementById('uploadLabel');
+      const imagePreview = document.getElementById('imagePreview');
+      const previewImg = document.getElementById('previewImg');
+      const uploadStatus = document.getElementById('uploadStatus');
+      const imageUrlInput = document.getElementById('imageUrlInput');
+      const removeImageBtn = document.getElementById('removeImageBtn');
+
+      // Get upload progress elements
+      const uploadProgress = document.getElementById('uploadProgress');
+      const progressCircle = document.getElementById('progressCircle');
+      const progressPercent = document.getElementById('progressPercent');
+      const progressText = document.getElementById('progressText');
+      const uploadNotification = document.getElementById('uploadNotification');
+
+      function showNotification(message, duration = 3000) {
+        const notificationText = document.getElementById('notificationText');
+        notificationText.textContent = message;
+        uploadNotification.classList.remove('hidden');
+        setTimeout(() => {
+          uploadNotification.classList.add('hidden');
+        }, duration);
+      }
+
+      function updateProgressCircle(percent) {
+        const circumference = 282.7;
+        const offset = circumference - (percent / 100) * circumference;
+        progressCircle.style.strokeDashoffset = offset.toString();
+        progressPercent.textContent = Math.round(percent) + '%';
+      }
+
+      if (imageInput) {
+        imageInput.addEventListener('change', async (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          // Validate file type
+          if (!file.type.startsWith('image/')) {
+            alert('Please select an image file');
+            imageInput.value = '';
+            return;
+          }
+
+          // Validate file size
+          if (file.size > 5 * 1024 * 1024) {
+            alert('File size must be less than 5MB');
+            imageInput.value = '';
+            return;
+          }
+
+          uploadLabel.classList.add('hidden');
+          uploadProgress.classList.remove('hidden');
+          updateProgressCircle(0);
+          progressText.textContent = 'Uploading...';
+
+          const resetUpload = () => {
+            uploadProgress.classList.add('hidden');
+            uploadLabel.classList.remove('hidden');
+            imageInput.value = '';
+          };
+
+          try {
+            // Read file as data URL for immediate local preview
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              const dataUrl = event.target?.result as string;
+              previewImg.src = dataUrl;
+            };
+            reader.readAsDataURL(file);
+
+            // Upload to serverless endpoint
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/upload', true);
+
+            xhr.upload.onprogress = (event) => {
+              if (event.lengthComputable) {
+                const percent = (event.loaded / event.total) * 100;
+                updateProgressCircle(percent);
+              }
+            };
+
+            xhr.onload = () => {
+              if (xhr.status === 200) {
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  uploadedImageUrl = response.imageUrl;
+                  imageUrlInput.value = response.imageUrl;
+                  
+                  // Complete animation
+                  updateProgressCircle(100);
+                  progressText.textContent = 'Complete!';
+                  
+                  setTimeout(() => {
+                    uploadProgress.classList.add('hidden');
+                    showNotification('Image uploaded successfully!');
+                  }, 500);
+                } catch (err) {
+                  alert('Error parsing server response.');
+                  resetUpload();
+                }
+              } else {
+                let errorMsg = 'Unknown error';
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  errorMsg = response.error || errorMsg;
+                } catch (e) {}
+                alert('Error uploading image: ' + errorMsg);
+                resetUpload();
+              }
+            };
+
+            xhr.onerror = () => {
+              alert('Error uploading image: Network error.');
+              resetUpload();
+            };
+
+            xhr.send(formData);
+          } catch (error) {
+            alert('Error uploading image: ' + (error instanceof Error ? error.message : 'Unknown error'));
+            resetUpload();
+          }
+        });
+      }
+
+      // Remove image
+      if (removeImageBtn) {
+        removeImageBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          uploadedImageUrl = '';
+          imageInput.value = '';
+          uploadLabel.classList.remove('hidden');
+          uploadStatus.textContent = '';
+        });
+      }
+      
+      document.getElementById('productForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Updating...';
+        
+        const formData = new FormData(e.target);
+        const currentImageUrl = imageUrlInput?.value || '';
+        
+        const data = {
+          name: formData.get('name'),
+          description: formData.get('description'),
+          category: formData.get('category'),
+          sku: formData.get('sku'),
+          price: formData.get('price'),
+          stock: formData.get('stock'),
+          image: uploadedImageUrl || currentImageUrl,
+        };
+        
+        // Validate data
+        if (!data.name || !data.description || !data.price || data.stock === '') {
+          alert('Please fill in all required fields');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          return;
+        }
+        
+        try {
+          const response = await fetch(\`/api/products/\${productId}\`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          
+          if (response.ok) {
+            const result = await response.json();
+            alert('Product updated successfully!');
+            window.location.href = '/admin/products';
+          } else {
+            const error = await response.json();
+            alert(\`Failed to update product: \${error.error || 'Unknown error'}\`);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        } catch (error) {
+          console.error('Error updating product:', error);
+          alert(\`Error updating product: \${error.message}\`);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+    <\/script>`], ["", '<div class="mb-8 flex items-center justify-between"> <div class="flex items-center gap-4"> <a href="/admin/products" class="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 hover:text-white hover:border-zinc-700 transition">\n\u2190\n</a> <p class="text-zinc-400">Edit product details for <span class="text-white font-medium">', '</span></p> </div> </div>\n\n    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 max-w-4xl"> <form id="productForm" class="space-y-8"> <input type="hidden" name="id"', '> <!-- Basic Info Section --> <div> <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Basic Information</h3> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div class="md:col-span-2"> <label class="block text-sm font-medium text-zinc-400 mb-2">Product Name</label> <input type="text" name="name" required', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> <div class="md:col-span-2"> <label class="block text-sm font-medium text-zinc-400 mb-2">Description</label> <textarea name="description" required rows="4" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition">', '</textarea> </div> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">Category</label> <select name="category" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> <option value="Men"', '>Men</option> <option value="Women"', '>Women</option> <option value="Unisex"', '>Unisex</option> <option value="Optical Frames"', '>Optical Frames</option> </select> </div> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">SKU (Stock Keeping Unit)</label> <input type="text" name="sku"', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> </div> </div> <!-- Pricing & Inventory --> <div> <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Pricing & Inventory</h3> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">Price (\u20A6)</label> <input type="number" name="price" required', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> <div> <label class="block text-sm font-medium text-zinc-400 mb-2">Stock Quantity</label> <input type="number" name="stock" required', ' class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"> </div> </div> </div> <!-- Media Section --> <div> <h3 class="text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">Product Media</h3> <div class="space-y-4"> <!-- Upload Progress --> <div id="uploadProgress" class="hidden flex flex-col items-center justify-center py-8"> <div class="relative w-24 h-24 mb-4"> <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100"> <circle cx="50" cy="50" r="45" fill="none" stroke="#27272a" stroke-width="3"></circle> <circle id="progressCircle" cx="50" cy="50" r="45" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="282.7" stroke-dashoffset="282.7" stroke-linecap="round" class="transition-all duration-300"></circle> </svg> <div class="absolute inset-0 flex items-center justify-center"> <span id="progressPercent" class="text-sm font-bold text-amber-400">0%</span> </div> </div> <p id="progressText" class="text-zinc-300 font-medium">Uploading...</p> </div> <!-- Image Preview --> <div id="imagePreview" class="block"> <img id="previewImg"', ' alt="Preview" class="w-full max-w-md h-64 object-cover rounded-2xl border border-zinc-700"> <button type="button" id="removeImageBtn" class="mt-2 text-red-400 hover:text-red-300 text-sm">\u2715 Remove Image</button> </div> <!-- Upload Label --> <label id="uploadLabel" class="border-2 border-dashed border-zinc-700 hover:border-amber-400 bg-zinc-950 rounded-2xl p-12 text-center transition cursor-pointer flex flex-col items-center justify-center relative overflow-hidden group"> <input type="file" id="imageInput" name="productImage" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"> <span class="text-4xl mb-4 group-hover:scale-110 transition-transform">\u{1F4F8}</span> <p class="text-zinc-300 font-medium mb-1">Click to upload a new image</p> <p class="text-xs text-zinc-500">SVG, PNG, JPG or GIF (max. 5MB)</p> <div id="uploadStatus" class="mt-4 text-sm"></div> </label> <!-- Notification Toast --> <div id="uploadNotification" class="hidden fixed bottom-6 right-6 bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 animate-pulse"> <span class="text-xl">\u2713</span> <span id="notificationText">Image uploaded successfully!</span> </div> <input type="hidden" id="imageUrlInput" name="imageUrl"', `> </div> </div> <div class="flex justify-end gap-4 pt-6 border-t border-zinc-800"> <a href="/admin/products" class="px-8 py-3 rounded-xl font-semibold bg-zinc-800 text-white hover:bg-zinc-700 transition">
+Cancel
+</a> <button type="submit" class="bg-amber-400 text-black px-8 py-3 rounded-xl font-bold hover:bg-amber-500 transition">
+Update Product
+</button> </div> </form> </div>
+
+    <script>
+      const productId = new URLSearchParams(window.location.search).get('id');
+      let uploadedImageUrl = '';
+
+      // Handle image upload
+      const imageInput = document.getElementById('imageInput');
+      const uploadLabel = document.getElementById('uploadLabel');
+      const imagePreview = document.getElementById('imagePreview');
+      const previewImg = document.getElementById('previewImg');
+      const uploadStatus = document.getElementById('uploadStatus');
+      const imageUrlInput = document.getElementById('imageUrlInput');
+      const removeImageBtn = document.getElementById('removeImageBtn');
+
+      // Get upload progress elements
+      const uploadProgress = document.getElementById('uploadProgress');
+      const progressCircle = document.getElementById('progressCircle');
+      const progressPercent = document.getElementById('progressPercent');
+      const progressText = document.getElementById('progressText');
+      const uploadNotification = document.getElementById('uploadNotification');
+
+      function showNotification(message, duration = 3000) {
+        const notificationText = document.getElementById('notificationText');
+        notificationText.textContent = message;
+        uploadNotification.classList.remove('hidden');
+        setTimeout(() => {
+          uploadNotification.classList.add('hidden');
+        }, duration);
+      }
+
+      function updateProgressCircle(percent) {
+        const circumference = 282.7;
+        const offset = circumference - (percent / 100) * circumference;
+        progressCircle.style.strokeDashoffset = offset.toString();
+        progressPercent.textContent = Math.round(percent) + '%';
+      }
+
+      if (imageInput) {
+        imageInput.addEventListener('change', async (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+
+          // Validate file type
+          if (!file.type.startsWith('image/')) {
+            alert('Please select an image file');
+            imageInput.value = '';
+            return;
+          }
+
+          // Validate file size
+          if (file.size > 5 * 1024 * 1024) {
+            alert('File size must be less than 5MB');
+            imageInput.value = '';
+            return;
+          }
+
+          uploadLabel.classList.add('hidden');
+          uploadProgress.classList.remove('hidden');
+          updateProgressCircle(0);
+          progressText.textContent = 'Uploading...';
+
+          const resetUpload = () => {
+            uploadProgress.classList.add('hidden');
+            uploadLabel.classList.remove('hidden');
+            imageInput.value = '';
+          };
+
+          try {
+            // Read file as data URL for immediate local preview
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              const dataUrl = event.target?.result as string;
+              previewImg.src = dataUrl;
+            };
+            reader.readAsDataURL(file);
+
+            // Upload to serverless endpoint
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/upload', true);
+
+            xhr.upload.onprogress = (event) => {
+              if (event.lengthComputable) {
+                const percent = (event.loaded / event.total) * 100;
+                updateProgressCircle(percent);
+              }
+            };
+
+            xhr.onload = () => {
+              if (xhr.status === 200) {
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  uploadedImageUrl = response.imageUrl;
+                  imageUrlInput.value = response.imageUrl;
+                  
+                  // Complete animation
+                  updateProgressCircle(100);
+                  progressText.textContent = 'Complete!';
+                  
+                  setTimeout(() => {
+                    uploadProgress.classList.add('hidden');
+                    showNotification('Image uploaded successfully!');
+                  }, 500);
+                } catch (err) {
+                  alert('Error parsing server response.');
+                  resetUpload();
+                }
+              } else {
+                let errorMsg = 'Unknown error';
+                try {
+                  const response = JSON.parse(xhr.responseText);
+                  errorMsg = response.error || errorMsg;
+                } catch (e) {}
+                alert('Error uploading image: ' + errorMsg);
+                resetUpload();
+              }
+            };
+
+            xhr.onerror = () => {
+              alert('Error uploading image: Network error.');
+              resetUpload();
+            };
+
+            xhr.send(formData);
+          } catch (error) {
+            alert('Error uploading image: ' + (error instanceof Error ? error.message : 'Unknown error'));
+            resetUpload();
+          }
+        });
+      }
+
+      // Remove image
+      if (removeImageBtn) {
+        removeImageBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          uploadedImageUrl = '';
+          imageInput.value = '';
+          uploadLabel.classList.remove('hidden');
+          uploadStatus.textContent = '';
+        });
+      }
+      
+      document.getElementById('productForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Updating...';
+        
+        const formData = new FormData(e.target);
+        const currentImageUrl = imageUrlInput?.value || '';
+        
+        const data = {
+          name: formData.get('name'),
+          description: formData.get('description'),
+          category: formData.get('category'),
+          sku: formData.get('sku'),
+          price: formData.get('price'),
+          stock: formData.get('stock'),
+          image: uploadedImageUrl || currentImageUrl,
+        };
+        
+        // Validate data
+        if (!data.name || !data.description || !data.price || data.stock === '') {
+          alert('Please fill in all required fields');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          return;
+        }
+        
+        try {
+          const response = await fetch(\\\`/api/products/\\\${productId}\\\`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          
+          if (response.ok) {
+            const result = await response.json();
+            alert('Product updated successfully!');
+            window.location.href = '/admin/products';
+          } else {
+            const error = await response.json();
+            alert(\\\`Failed to update product: \\\${error.error || 'Unknown error'}\\\`);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        } catch (error) {
+          console.error('Error updating product:', error);
+          alert(\\\`Error updating product: \\\${error.message}\\\`);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      });
+    <\/script>`])), maybeRenderHead(), product.name, addAttribute(product.id, "value"), addAttribute(product.name, "value"), product.description, addAttribute(product.category === "Men", "selected"), addAttribute(product.category === "Women", "selected"), addAttribute(product.category === "Unisex", "selected"), addAttribute(product.category === "Optical Frames", "selected"), addAttribute(product.sku, "value"), addAttribute(product.price, "value"), addAttribute(product.stock, "value"), addAttribute(product.image, "src"), addAttribute(product.image, "value")) : renderTemplate`<div class="text-center py-16"> <p class="text-zinc-400 mb-4">Product not found</p> <a href="/admin/products" class="text-amber-400 hover:text-amber-300">← Back to Products</a> </div>`}` })}`;
+}, "C:/Users/Lenovo/Documents/GitHub/shadesworld-ng/src/pages/admin/products/edit.astro", void 0);
+
+const $$file = "C:/Users/Lenovo/Documents/GitHub/shadesworld-ng/src/pages/admin/products/edit.astro";
+const $$url = "/admin/products/edit";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Edit,
+  file: $$file,
+  prerender,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

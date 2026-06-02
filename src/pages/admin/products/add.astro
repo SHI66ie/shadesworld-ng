@@ -166,45 +166,77 @@ import AdminLayout from '../../../layouts/AdminLayout.astro';
       uploadLabel.classList.add('hidden');
       uploadProgress.classList.remove('hidden');
       updateProgressCircle(0);
+      progressText.textContent = 'Uploading...';
 
-      try {
-        // Read file as data URL for preview
-        const reader = new FileReader();
-        let lastUpdate = 0;
-        
-        reader.onprogress = (event) => {
-          if (event.lengthComputable) {
-            const percent = (event.loaded / event.total) * 100;
-            // Update progress circle every 50ms to avoid too many updates
-            if (Date.now() - lastUpdate > 50) {
-              updateProgressCircle(percent);
-              lastUpdate = Date.now();
-            }
-          }
-        };
-
-        reader.onload = (event) => {
-          const dataUrl = event.target?.result as string;
-          previewImg.src = dataUrl;
-          uploadedImageUrl = dataUrl;
-          imageUrlInput.value = dataUrl;
-          
-          // Complete animation
-          updateProgressCircle(100);
-          progressText.textContent = 'Complete!';
-          
-          setTimeout(() => {
-            imagePreview.classList.remove('hidden');
-            uploadProgress.classList.add('hidden');
-            showNotification('Image uploaded successfully!');
-          }, 500);
-        };
-        reader.readAsDataURL(file);
-      } catch (error) {
-        alert('Error uploading image: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      const resetUpload = () => {
         uploadProgress.classList.add('hidden');
         uploadLabel.classList.remove('hidden');
         imageInput.value = '';
+      };
+
+      try {
+        // Read file as data URL for immediate local preview
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const dataUrl = event.target?.result as string;
+          previewImg.src = dataUrl;
+        };
+        reader.readAsDataURL(file);
+
+        // Upload to serverless endpoint
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/api/upload', true);
+
+        xhr.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const percent = (event.loaded / event.total) * 100;
+            updateProgressCircle(percent);
+          }
+        };
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            try {
+              const response = JSON.parse(xhr.responseText);
+              uploadedImageUrl = response.imageUrl;
+              imageUrlInput.value = response.imageUrl;
+              
+              // Complete animation
+              updateProgressCircle(100);
+              progressText.textContent = 'Complete!';
+              
+              setTimeout(() => {
+                imagePreview.classList.remove('hidden');
+                uploadProgress.classList.add('hidden');
+                showNotification('Image uploaded successfully!');
+              }, 500);
+            } catch (err) {
+              alert('Error parsing server response.');
+              resetUpload();
+            }
+          } else {
+            let errorMsg = 'Unknown error';
+            try {
+              const response = JSON.parse(xhr.responseText);
+              errorMsg = response.error || errorMsg;
+            } catch (e) {}
+            alert('Error uploading image: ' + errorMsg);
+            resetUpload();
+          }
+        };
+
+        xhr.onerror = () => {
+          alert('Error uploading image: Network error.');
+          resetUpload();
+        };
+
+        xhr.send(formData);
+      } catch (error) {
+        alert('Error uploading image: ' + (error instanceof Error ? error.message : 'Unknown error'));
+        resetUpload();
       }
     });
 
