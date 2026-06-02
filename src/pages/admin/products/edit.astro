@@ -239,6 +239,7 @@ if (!product) {
                   progressText.textContent = 'Complete!';
                   
                   setTimeout(() => {
+                    imagePreview.classList.remove('hidden');
                     uploadProgress.classList.add('hidden');
                     showNotification('Image uploaded successfully!');
                   }, 500);
@@ -275,7 +276,9 @@ if (!product) {
         removeImageBtn.addEventListener('click', (e) => {
           e.preventDefault();
           uploadedImageUrl = '';
+          imageUrlInput.value = '';
           imageInput.value = '';
+          imagePreview.classList.add('hidden');
           uploadLabel.classList.remove('hidden');
           uploadStatus.textContent = '';
         });
