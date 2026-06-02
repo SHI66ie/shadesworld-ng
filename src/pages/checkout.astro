@@ -134,11 +134,11 @@
             <div class="space-y-4 mb-6">
               <!-- Item 1 -->
               <div class="flex gap-4">
-                <div class="w-20 h-20 bg-zinc-800 rounded-xl flex items-center justify-center text-3xl">🕶️</div>
+                <div id="summaryImage" class="w-20 h-20 bg-zinc-800 rounded-xl flex items-center justify-center text-3xl overflow-hidden">🕶️</div>
                 <div class="flex-1 flex flex-col justify-center">
-                  <h4 class="font-medium">Wayfarer Classic</h4>
+                  <h4 id="summaryName" class="font-medium">Wayfarer Classic</h4>
                   <p class="text-sm text-zinc-400 mt-1">Qty: 1</p>
-                  <p class="font-semibold text-amber-400 mt-1">₦18,500</p>
+                  <p id="summaryPrice" class="font-semibold text-amber-400 mt-1">₦18,500</p>
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@
             <div class="border-t border-zinc-800 pt-6 space-y-4">
               <div class="flex justify-between text-zinc-400">
                 <span>Subtotal</span>
-                <span>₦18,500</span>
+                <span id="summarySubtotal">₦18,500</span>
               </div>
               <div class="flex justify-between text-zinc-400">
                 <span>Shipping</span>
@@ -161,9 +161,52 @@
             <div class="border-t border-zinc-800 mt-6 pt-6">
               <div class="flex justify-between items-end">
                 <span class="text-lg font-medium">Total</span>
-                <span class="text-3xl font-bold text-white">₦21,000</span>
+                <span id="summaryTotal" class="text-3xl font-bold text-white">₦21,000</span>
               </div>
             </div>
+
+            <script>
+              // Load correct product based on query parameter
+              async function loadProduct() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+                if (!id) return;
+
+                try {
+                  const response = await fetch(`/api/products/${id}`);
+                  if (response.ok) {
+                    const product = await response.json();
+                    
+                    // Update name
+                    const nameEl = document.getElementById('summaryName');
+                    if (nameEl) nameEl.textContent = product.name;
+                    
+                    // Update price in summary
+                    const priceEl = document.getElementById('summaryPrice');
+                    if (priceEl) priceEl.textContent = `₦${product.price.toLocaleString()}`;
+                    
+                    // Update subtotal
+                    const subtotalEl = document.getElementById('summarySubtotal');
+                    if (subtotalEl) subtotalEl.textContent = `₦${product.price.toLocaleString()}`;
+                    
+                    // Update total
+                    const totalEl = document.getElementById('summaryTotal');
+                    if (totalEl) totalEl.textContent = `₦${(product.price + 2500).toLocaleString()}`;
+                    
+                    // Update image
+                    const imageEl = document.getElementById('summaryImage');
+                    if (imageEl) {
+                      imageEl.innerHTML = `<img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" onerror="this.outerHTML='🕶️'" />`;
+                    }
+                  }
+                } catch (error) {
+                  console.error('Error fetching product for checkout:', error);
+                }
+              }
+
+              // Run on load
+              loadProduct();
+            </script>
             
             <!-- Trust Badges -->
             <div class="mt-8 pt-6 border-t border-zinc-800/50 flex flex-wrap gap-4 justify-center">
