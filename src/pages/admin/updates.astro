@@ -5,7 +5,7 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
 <AdminLayout title="Manage Updates">
   <div class="flex justify-between items-center mb-8">
     <p class="text-zinc-400">Post new updates, changelogs, and announcements for your app.</p>
-    <button class="bg-amber-400 hover:bg-amber-500 text-black px-6 py-2.5 rounded-xl font-semibold flex items-center gap-2 transition">
+    <button id="newUpdateBtn" type="button" class="bg-amber-400 hover:bg-amber-500 text-black px-6 py-2.5 rounded-xl font-semibold flex items-center gap-2 transition">
       <span>+</span> New Update
     </button>
   </div>
@@ -22,8 +22,11 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
         <label class="block text-sm font-medium text-zinc-400 mb-1">Update Details</label>
         <textarea rows="4" placeholder="Describe what's new in this update..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition"></textarea>
       </div>
-      <div class="flex justify-end">
-        <button type="button" class="bg-white text-black px-8 py-3 rounded-xl font-semibold hover:bg-amber-400 transition">
+      <div class="flex justify-end gap-3">
+        <button type="button" id="cancelUpdateBtn" class="bg-zinc-800 text-white px-8 py-3 rounded-xl font-semibold hover:bg-zinc-700 transition">
+          Cancel
+        </button>
+        <button type="button" id="publishUpdateBtn" class="bg-white text-black px-8 py-3 rounded-xl font-semibold hover:bg-amber-400 transition">
           Publish Update
         </button>
       </div>
@@ -67,11 +70,79 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
             <span class="bg-green-500/10 text-green-400 border border-green-500/20 px-3 py-1 rounded-full text-xs font-medium">Published</span>
           </td>
           <td class="p-4 text-right">
-            <button class="text-zinc-400 hover:text-white transition px-2">Edit</button>
-            <button class="text-red-400 hover:text-red-300 transition px-2">Delete</button>
+            <button onclick="window.editUpdate('v1.2.0')" type="button" class="text-zinc-400 hover:text-white transition px-2">Edit</button>
+            <button onclick="window.deleteUpdate('v1.2.0')" type="button" class="text-red-400 hover:text-red-300 transition px-2">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <script>
+    const form = document.querySelector('form');
+    const newUpdateBtn = document.getElementById('newUpdateBtn');
+    const cancelUpdateBtn = document.getElementById('cancelUpdateBtn');
+    const publishUpdateBtn = document.getElementById('publishUpdateBtn');
+
+    // Toggle form visibility
+    if (newUpdateBtn) {
+      newUpdateBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+
+    // Cancel button
+    if (cancelUpdateBtn) {
+      cancelUpdateBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        form.style.display = 'none';
+        form.reset();
+      });
+    }
+
+    // Publish button
+    if (publishUpdateBtn) {
+      publishUpdateBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        const titleInput = form.querySelector('input[type="text"]');
+        const detailsInput = form.querySelector('textarea');
+        
+        if (!titleInput.value || !detailsInput.value) {
+          alert('Please fill in all fields');
+          return;
+        }
+        
+        publishUpdateBtn.disabled = true;
+        publishUpdateBtn.textContent = 'Publishing...';
+        
+        try {
+          alert(`Published update: ${titleInput.value}`);
+          form.reset();
+          form.style.display = 'none';
+          publishUpdateBtn.disabled = false;
+          publishUpdateBtn.textContent = 'Publish Update';
+        } catch (error) {
+          alert('Error publishing update: ' + error.message);
+          publishUpdateBtn.disabled = false;
+          publishUpdateBtn.textContent = 'Publish Update';
+        }
+      });
+    }
+
+    function editUpdate(id) {
+      alert(`Edit update ${id} feature coming soon!`);
+    }
+
+    function deleteUpdate(id) {
+      if (confirm(`Are you sure you want to delete update ${id}?`)) {
+        alert(`Update ${id} deleted!`);
+      }
+    }
+
+    // Make functions globally accessible
+    window.editUpdate = editUpdate;
+    window.deleteUpdate = deleteUpdate;
+  </script>
 </AdminLayout>

@@ -48,7 +48,8 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
             <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full text-xs font-medium">Pending</span>
           </td>
           <td class="p-4 text-right">
-            <button class="text-amber-400 hover:text-amber-300 transition px-2">View</button>
+            <button onclick="window.viewOrder('ORD-0091')" type="button" class="text-zinc-400 hover:text-white transition px-2">View</button>
+            <button onclick="window.updateOrderStatus('ORD-0091')" type="button" class="text-amber-400 hover:text-amber-300 transition px-2">Update</button>
           </td>
         </tr>
         <!-- Order Row 2 -->
@@ -64,10 +65,28 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
             <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full text-xs font-medium">Shipped</span>
           </td>
           <td class="p-4 text-right">
-            <button class="text-amber-400 hover:text-amber-300 transition px-2">View</button>
+            <button onclick="window.viewOrder('ORD-0090')" type="button" class="text-zinc-400 hover:text-white transition px-2">View</button>
+            <button onclick="window.updateOrderStatus('ORD-0090')" type="button" class="text-amber-400 hover:text-amber-300 transition px-2">Update</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <script>
+    function viewOrder(orderId) {
+      alert(`View order ${orderId} feature coming soon!`);
+    }
+
+    function updateOrderStatus(orderId) {
+      const newStatus = prompt(`Update order ${orderId} status to:`, 'shipped');
+      if (newStatus) {
+        alert(`Order ${orderId} status updated to: ${newStatus}`);
+      }
+    }
+
+    // Make functions globally accessible
+    window.viewOrder = viewOrder;
+    window.updateOrderStatus = updateOrderStatus;
+  </script>
 </AdminLayout>
