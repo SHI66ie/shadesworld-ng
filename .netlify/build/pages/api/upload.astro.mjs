@@ -1,8 +1,7 @@
-import { getStore } from '@netlify/blobs';
+import { b as saveUploadedImage } from '../../chunks/db_CI64cCn7.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const prerender = false;
-const STORE_NAME = "product-images";
 const POST = async ({ request }) => {
   try {
     const formData = await request.formData();
@@ -26,14 +25,8 @@ const POST = async ({ request }) => {
       });
     }
     const buffer = await file.arrayBuffer();
-    const store = getStore(STORE_NAME);
     const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-    await store.set(filename, buffer, {
-      metadata: {
-        contentType: file.type,
-        originalName: file.name
-      }
-    });
+    await saveUploadedImage(filename, buffer, file.type);
     return new Response(
       JSON.stringify({
         success: true,

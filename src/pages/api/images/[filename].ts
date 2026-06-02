@@ -1,9 +1,7 @@
 import type { APIRoute } from 'astro';
-import { getStore } from '@netlify/blobs';
+import { getUploadedImage } from '../../../utils/db.ts';
 
 export const prerender = false;
-
-const STORE_NAME = 'product-images';
 
 export const GET: APIRoute = async ({ params }) => {
   const { filename } = params;
@@ -15,23 +13,20 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   try {
-    const store = getStore(STORE_NAME);
-    const result = await store.getWithMetadata(filename, { type: 'arrayBuffer' });
+    const result = await getUploadedImage(filename);
     
     if (!result || !result.data) {
       return new Response('Image not found', { status: 404 });
     }
 
-    const contentType = result.metadata?.metadata?.contentType as string || 'image/jpeg';
-
     return new Response(result.data, {
       headers: {
-        'Content-Type': contentType,
+        'Content-Type': result.contentType,
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     });
   } catch (error) {
-    console.error('Error fetching image from blobs:', error);
+    console.error('Error fetching image:', error);
     return new Response('Failed to load image', { status: 500 });
   }
 };

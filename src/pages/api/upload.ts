@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getStore } from '@netlify/blobs';
+import { saveUploadedImage } from '../../utils/db.ts';
 
 export const prerender = false;
 
@@ -36,16 +36,10 @@ export const POST: APIRoute = async ({ request }) => {
     // Convert file to ArrayBuffer
     const buffer = await file.arrayBuffer();
 
-    // Store in Netlify Blobs with unique filename
-    const store = getStore(STORE_NAME);
+    // Store image with unique filename
     const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
     
-    await store.set(filename, buffer, {
-      metadata: {
-        contentType: file.type,
-        originalName: file.name,
-      },
-    });
+    await saveUploadedImage(filename, buffer, file.type);
 
     return new Response(
       JSON.stringify({

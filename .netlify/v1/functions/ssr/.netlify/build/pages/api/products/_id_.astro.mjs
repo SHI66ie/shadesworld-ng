@@ -1,22 +1,7 @@
-import { getStore } from '@netlify/blobs';
-import { products } from '../../../chunks/products_BP3GvgAQ.mjs';
+import { g as getProducts, s as saveProducts } from '../../../chunks/db_CI64cCn7.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const prerender = false;
-const STORE_NAME = "products";
-async function getProducts() {
-  const store = getStore(STORE_NAME);
-  let products$1 = await store.get("products", { type: "json" });
-  if (!products$1 || products$1.length === 0) {
-    products$1 = [...products];
-    await store.setJSON("products", products$1);
-  }
-  return products$1;
-}
-async function saveProducts(products) {
-  const store = getStore(STORE_NAME);
-  await store.setJSON("products", products);
-}
 const GET = async ({ params }) => {
   try {
     const id = parseInt(params.id || "");

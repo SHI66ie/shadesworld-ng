@@ -1,25 +1,7 @@
 import type { APIRoute } from 'astro';
-import { getStore } from '@netlify/blobs';
-import { products as initialProducts } from '../../../data/products.ts';
+import { getProducts, saveProducts } from '../../../utils/db.ts';
 
 export const prerender = false;
-
-const STORE_NAME = 'products';
-
-async function getProducts() {
-  const store = getStore(STORE_NAME);
-  let products = await store.get('products', { type: 'json' });
-  if (!products || products.length === 0) {
-    products = [...initialProducts];
-    await store.setJSON('products', products);
-  }
-  return products;
-}
-
-async function saveProducts(products: any[]) {
-  const store = getStore(STORE_NAME);
-  await store.setJSON('products', products);
-}
 
 export const GET: APIRoute = async () => {
   try {
