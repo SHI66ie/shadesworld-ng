@@ -35,12 +35,18 @@ export async function getProducts(): Promise<any[]> {
       if (products && Array.isArray(products)) {
         return products;
       }
+      // If products store is empty/null in Netlify Blobs, initialize it and return initialProducts
+      const initial = [...initialProducts];
+      await store.setJSON('products', initial);
+      return initial;
     } catch (e) {
-      console.warn('Failed to retrieve products from Netlify Blobs, falling back to local storage:', e);
+      console.error('Failed to retrieve products from Netlify Blobs:', e);
+      // Return static memory data in production fallback without writing to disk
+      return [...initialProducts];
     }
   }
 
-  // Local storage fallback
+  // Local storage fallback (ONLY runs in non-Netlify environments)
   ensureLocalDirs();
   if (fs.existsSync(PRODUCTS_JSON_PATH)) {
     try {
@@ -67,7 +73,8 @@ export async function saveProducts(products: any[]): Promise<void> {
       await store.setJSON('products', products);
       return;
     } catch (e) {
-      console.error('Failed to save products to Netlify Blobs, trying local storage:', e);
+      console.error('Failed to save products to Netlify Blobs:', e);
+      throw new Error('Failed to save products to database');
     }
   }
 
@@ -93,7 +100,8 @@ export async function saveUploadedImage(filename: string, buffer: ArrayBuffer, c
       });
       return;
     } catch (e) {
-      console.error('Failed to upload image to Netlify Blobs, trying local storage:', e);
+      console.error('Failed to upload image to Netlify Blobs:', e);
+      throw new Error('Failed to upload image to database');
     }
   }
 
@@ -125,8 +133,10 @@ export async function getUploadedImage(filename: string): Promise<ImageResult | 
           contentType,
         };
       }
+      return null;
     } catch (e) {
-      console.warn('Failed to get image from Netlify Blobs, checking local storage:', e);
+      console.error('Failed to get image from Netlify Blobs:', e);
+      return null;
     }
   }
 

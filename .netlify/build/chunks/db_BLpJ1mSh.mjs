@@ -23,12 +23,16 @@ async function getProducts() {
   if (isNetlify()) {
     try {
       const store = getStore(PRODUCTS_STORE_NAME);
-      let products = await store.get("products", { type: "json" });
-      if (products && Array.isArray(products)) {
-        return products;
+      let products$1 = await store.get("products", { type: "json" });
+      if (products$1 && Array.isArray(products$1)) {
+        return products$1;
       }
+      const initial = [...products];
+      await store.setJSON("products", initial);
+      return initial;
     } catch (e) {
-      console.warn("Failed to retrieve products from Netlify Blobs, falling back to local storage:", e);
+      console.error("Failed to retrieve products from Netlify Blobs:", e);
+      return [...products];
     }
   }
   ensureLocalDirs();
@@ -54,7 +58,8 @@ async function saveProducts(products) {
       await store.setJSON("products", products);
       return;
     } catch (e) {
-      console.error("Failed to save products to Netlify Blobs, trying local storage:", e);
+      console.error("Failed to save products to Netlify Blobs:", e);
+      throw new Error("Failed to save products to database");
     }
   }
   ensureLocalDirs();
@@ -77,7 +82,8 @@ async function saveUploadedImage(filename, buffer, contentType) {
       });
       return;
     } catch (e) {
-      console.error("Failed to upload image to Netlify Blobs, trying local storage:", e);
+      console.error("Failed to upload image to Netlify Blobs:", e);
+      throw new Error("Failed to upload image to database");
     }
   }
   ensureLocalDirs();
@@ -101,8 +107,10 @@ async function getUploadedImage(filename) {
           contentType
         };
       }
+      return null;
     } catch (e) {
-      console.warn("Failed to get image from Netlify Blobs, checking local storage:", e);
+      console.error("Failed to get image from Netlify Blobs:", e);
+      return null;
     }
   }
   ensureLocalDirs();

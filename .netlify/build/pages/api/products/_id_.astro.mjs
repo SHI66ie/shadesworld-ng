@@ -1,4 +1,4 @@
-import { g as getProducts, s as saveProducts } from '../../../chunks/db_CI64cCn7.mjs';
+import { g as getProducts, s as saveProducts } from '../../../chunks/db_BLpJ1mSh.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const prerender = false;
