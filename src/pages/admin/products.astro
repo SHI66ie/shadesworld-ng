@@ -76,9 +76,14 @@ try {
           allProducts = await response.json();
           renderProducts(allProducts);
           return true;
+        } else {
+          const error = await response.json();
+          console.error('Error loading products:', error);
+          alert(`Failed to load products: ${error.error || 'Unknown error'}`);
         }
       } catch (error) {
         console.error('Error loading products:', error);
+        alert(`Error loading products: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
       return false;
     }
@@ -164,14 +169,16 @@ try {
         });
 
         if (response.ok) {
-          alert('Product deleted successfully');
+          const result = await response.json();
+          alert('Product deleted successfully!');
           await loadProducts(); // Refresh the list immediately
         } else {
-          alert('Failed to delete product');
+          const error = await response.json();
+          alert(`Failed to delete product: ${error.error || 'Unknown error'}`);
         }
       } catch (error) {
         console.error('Error deleting product:', error);
-        alert('Error deleting product');
+        alert(`Error deleting product: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
     }
 

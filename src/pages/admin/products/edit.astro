@@ -106,9 +106,16 @@ if (!product) {
       </form>
     </div>
 
-    <script define:vars={{ productId }}>
+    <script>
+      const productId = new URLSearchParams(window.location.search).get('id');
+      
       document.getElementById('productForm').addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Updating...';
         
         const formData = new FormData(e.target);
         const data = {
@@ -121,6 +128,14 @@ if (!product) {
           image: '/images/hero.png',
         };
         
+        // Validate data
+        if (!data.name || !data.description || !data.price || data.stock === '') {
+          alert('Please fill in all required fields');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          return;
+        }
+        
         try {
           const response = await fetch(`/api/products/${productId}`, {
             method: 'PUT',
@@ -129,14 +144,20 @@ if (!product) {
           });
           
           if (response.ok) {
-            alert('Product updated successfully');
+            const result = await response.json();
+            alert('Product updated successfully!');
             window.location.href = '/admin/products';
           } else {
-            alert('Failed to update product');
+            const error = await response.json();
+            alert(`Failed to update product: ${error.error || 'Unknown error'}`);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
           }
         } catch (error) {
           console.error('Error updating product:', error);
-          alert('Error updating product');
+          alert(`Error updating product: ${error.message}`);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
         }
       });
     </script>
