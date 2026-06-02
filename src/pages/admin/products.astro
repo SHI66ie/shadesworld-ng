@@ -119,8 +119,8 @@ try {
           <td class="p-4 text-sm text-zinc-400">${product.stock} in stock</td>
           <td class="p-4">${statusBadge}</td>
           <td class="p-4 text-right">
-            <button onclick="editProduct(${product.id})" class="text-zinc-400 hover:text-white transition px-2">Edit</button>
-            <button onclick="deleteProduct(${product.id})" class="text-red-400 hover:text-red-300 transition px-2">Delete</button>
+            <button type="button" onclick="window.editProduct(${product.id})" class="text-zinc-400 hover:text-white transition px-2">Edit</button>
+            <button type="button" onclick="window.deleteProduct(${product.id})" class="text-red-400 hover:text-red-300 transition px-2">Delete</button>
           </td>
         `;
         tbody.appendChild(row);
@@ -198,6 +198,10 @@ try {
         autoRefreshInterval = null;
       }
     }
+
+    // Make functions globally accessible for onclick handlers
+    window.editProduct = editProduct;
+    window.deleteProduct = deleteProduct;
 
     // Setup event listeners
     document.getElementById('searchInput').addEventListener('input', filterProducts);
