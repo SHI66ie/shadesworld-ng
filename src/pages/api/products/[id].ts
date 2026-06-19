@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getProducts, saveProducts } from '../../../utils/db.ts';
+import { withAuth } from '../../../utils/auth.ts';
 
 export const prerender = false;
 
@@ -37,7 +38,7 @@ export const GET: APIRoute = async ({ params }) => {
   }
 };
 
-export const PUT: APIRoute = async ({ request, params }) => {
+export const PUT = withAuth(async ({ request, params }) => {
   try {
     const id = parseInt(params.id || '');
     if (isNaN(id)) {
@@ -49,7 +50,6 @@ export const PUT: APIRoute = async ({ request, params }) => {
     
     const data = await request.json();
     
-    // Validate required fields
     if (!data.name || !data.description || !data.category || data.price === undefined || data.stock === undefined) {
       return new Response(JSON.stringify({ 
         error: 'Missing required fields: name, description, category, price, stock' 
@@ -95,9 +95,9 @@ export const PUT: APIRoute = async ({ request, params }) => {
       status: 500,
     });
   }
-};
+});
 
-export const DELETE: APIRoute = async ({ params }) => {
+export const DELETE = withAuth(async ({ params }) => {
   try {
     const id = parseInt(params.id || '');
     if (isNaN(id)) {
@@ -133,4 +133,4 @@ export const DELETE: APIRoute = async ({ params }) => {
       status: 500,
     });
   }
-};
+});
