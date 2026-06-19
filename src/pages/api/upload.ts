@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
 import { saveUploadedImage } from '../../utils/db.ts';
+import { withAuth } from '../../utils/auth.ts';
 
 export const prerender = false;
 
 const STORE_NAME = 'product-images';
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST = withAuth(async ({ request }) => {
   try {
     const formData = await request.formData();
     const file = formData.get('image') as File;
@@ -17,7 +18,6 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Validate file type
     if (!file.type.startsWith('image/')) {
       return new Response(JSON.stringify({ error: 'File must be an image' }), {
         headers: { 'Content-Type': 'application/json' },
@@ -25,7 +25,6 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       return new Response(JSON.stringify({ error: 'File size must be less than 5MB' }), {
         headers: { 'Content-Type': 'application/json' },
@@ -33,11 +32,8 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Convert file to ArrayBuffer
     const buffer = await file.arrayBuffer();
-
-    // Store image with unique filename
-    const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+    const filename = `${Date.now()}-${file.name.replace(/\/s+/g, '-')}`;
     
     await saveUploadedImage(filename, buffer, file.type);
 
@@ -64,4 +60,4 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   }
-};
+});
