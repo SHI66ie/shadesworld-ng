@@ -1,13 +1,28 @@
 ---
-// Basic protected admin (expand as needed)
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 ---
 
-<Layout title="Admin Dashboard">
-  <div class="p-8">
-    <h1 class="text-3xl font-bold mb-8">Shades World Admin</h1>
-    <p>Welcome to admin. Use the product management tools below.</p>
-    <!-- Add your existing admin components/forms here -->
-    <a href="/admin/login" class="text-blue-600">Login</a>
+<AdminLayout title="Dashboard">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
+      <h3 class="text-amber-400 text-sm uppercase tracking-widest">Total Products</h3>
+      <p class="text-5xl font-bold mt-2" id="product-count">0</p>
+    </div>
+    <!-- More cards -->
   </div>
-</Layout>
+  <div class="mt-8">
+    <a href="/admin/products" class="inline-block bg-amber-500 text-black px-8 py-3 rounded-xl font-medium">Manage Products</a>
+  </div>
+</AdminLayout>
+
+<script>
+  // Fetch products (will work after auth)
+  async function loadStats() {
+    try {
+      const res = await fetch('/api/products');
+      const products = await res.json();
+      document.getElementById('product-count').textContent = products.length;
+    } catch(e) {}
+  }
+  loadStats();
+</script>

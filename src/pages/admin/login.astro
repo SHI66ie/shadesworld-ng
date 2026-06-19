@@ -1,34 +1,29 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 ---
 
-<Layout title="Admin Login - Shades World">
-  <div class="min-h-screen bg-gray-50 flex items-center justify-center">
-    <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-md">
-      <h1 class="text-2xl font-bold text-center mb-6">Admin Login</h1>
-      <p id="message" class="text-center text-red-500 mb-4 hidden"></p>
+<AdminLayout title="Admin Login">
+  <div class="max-w-md mx-auto mt-20">
+    <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
+      <h1 class="text-3xl font-bold text-center mb-8 text-amber-400">Shades Admin</h1>
+      <p id="message" class="text-red-400 text-center mb-6 hidden"></p>
       
-      <button onclick="loginWithNetlify()" 
-              class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700">
-        Login with Netlify Identity
+      <button 
+        onclick="handleLogin()"
+        class="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 rounded-xl transition text-lg">
+        Sign in with Netlify
       </button>
       
-      <p class="text-xs text-gray-500 text-center mt-6">
-        After login, go to <a href="/admin" class="text-blue-600">/admin</a>
+      <p class="text-xs text-zinc-500 text-center mt-8">
+        Protected area for inventory management
       </p>
     </div>
   </div>
+</AdminLayout>
 
-  <script>
-    async function loginWithNetlify() {
-      const messageEl = document.getElementById('message');
-      try {
-        // Netlify Identity widget or direct
-        window.location.href = '/.netlify/identity/login';
-      } catch (e) {
-        messageEl.textContent = 'Login failed. Ensure Identity is enabled.';
-        messageEl.classList.remove('hidden');
-      }
-    }
-  </script>
-</Layout>
+<script>
+  function handleLogin() {
+    // Redirect to Netlify Identity login
+    window.location.href = '/.netlify/identity/login';
+  }
+</script>
