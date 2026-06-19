@@ -3,6 +3,13 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
 ---
 
 <AdminLayout title="Dashboard">
+  <script>
+    // Simple client-side guard
+    if (localStorage.getItem('adminLoggedIn') !== 'true') {
+      window.location.href = '/admin/login';
+    }
+  </script>
+
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800">
       <h3 class="text-amber-400 text-sm uppercase tracking-widest">Total Products</h3>
@@ -16,7 +23,6 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
 </AdminLayout>
 
 <script>
-  // Fetch products (will work after auth)
   async function loadStats() {
     try {
       const res = await fetch('/api/products');

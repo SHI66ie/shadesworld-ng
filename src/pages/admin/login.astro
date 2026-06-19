@@ -23,7 +23,7 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
       </form>
 
       <p id="error" class="text-red-400 text-sm text-center mt-4 hidden"></p>
-      <p class="text-xs text-zinc-500 text-center mt-6">Default: admin / shades2026 (change in production)</p>
+      <p class="text-xs text-zinc-500 text-center mt-6">Default: admin / shades2026 (change later)</p>
     </div>
   </div>
 </AdminLayout>
@@ -37,12 +37,11 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // Simple client-side check (replace with real auth later)
     if (username === 'admin' && password === 'shades2026') {
       localStorage.setItem('adminLoggedIn', 'true');
       window.location.href = '/admin';
     } else {
-      errorEl.textContent = 'Invalid credentials';
+      errorEl.textContent = 'Invalid credentials. Try admin / shades2026';
       errorEl.classList.remove('hidden');
     }
   });
