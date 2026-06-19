@@ -27,6 +27,11 @@ const { title = "Admin Dashboard" } = Astro.props;
         <a href="/admin/orders" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-zinc-800 transition text-sm font-medium text-zinc-400">
           <span class="text-lg">📦</span> Orders
         </a>
+        <a href="/admin/login" 
+           onclick="localStorage.removeItem('adminLoggedIn')"
+           class="flex items-center gap-3 px-4 py-3 mt-4 rounded-xl hover:bg-red-600 transition text-sm font-medium text-red-400">
+          <span class="text-lg">🚪</span> Logout
+        </a>
       </nav>
       <div class="p-4 border-t border-zinc-800">
         <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-zinc-800 transition text-sm font-medium text-zinc-400">
@@ -41,11 +46,11 @@ const { title = "Admin Dashboard" } = Astro.props;
       <header class="h-16 border-b border-zinc-800 flex items-center justify-between px-8 bg-zinc-950/50 backdrop-blur-md sticky top-0 z-10">
         <h1 class="text-lg font-semibold">{title}</h1>
         <div class="flex items-center gap-4">
-          <button 
-            onclick="logout()"
-            class="px-4 py-2 text-sm bg-zinc-800 hover:bg-red-600 hover:text-white rounded-xl transition flex items-center gap-2">
-            <span>Logout</span>
-          </button>
+          <a href="/admin/login" 
+             onclick="localStorage.removeItem('adminLoggedIn')"
+             class="px-4 py-2 text-sm bg-zinc-800 hover:bg-red-600 hover:text-white rounded-xl transition">
+            Logout
+          </a>
           <div class="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center">
             👤
           </div>
@@ -59,12 +64,7 @@ const { title = "Admin Dashboard" } = Astro.props;
     </main>
 
   <script>
-    function logout() {
-      localStorage.removeItem('adminLoggedIn');
-      window.location.href = '/admin/login';
-    }
-
-    // Optional: also guard on every admin page load
+    // Guard: redirect to login if not authenticated
     if (localStorage.getItem('adminLoggedIn') !== 'true' && window.location.pathname !== '/admin/login') {
       window.location.href = '/admin/login';
     }
