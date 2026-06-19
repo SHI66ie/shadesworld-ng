@@ -1,46 +1,13 @@
 ---
-import AdminLayout from '../../layouts/AdminLayout.astro';
+// Basic protected admin (expand as needed)
+import Layout from '../../layouts/Layout.astro';
 ---
 
-<AdminLayout title="Dashboard Overview">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-      <h3 class="text-sm font-medium text-zinc-400 mb-1">Total Sales</h3>
-      <p class="text-3xl font-bold">₦452,000</p>
-      <span class="text-green-500 text-sm mt-2 inline-block">↑ 12% this week</span>
-    </div>
-    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-      <h3 class="text-sm font-medium text-zinc-400 mb-1">Active Orders</h3>
-      <p class="text-3xl font-bold">14</p>
-      <span class="text-green-500 text-sm mt-2 inline-block">↑ 3 new today</span>
-    </div>
-    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
-      <h3 class="text-sm font-medium text-zinc-400 mb-1">App Updates</h3>
-      <p class="text-3xl font-bold">3</p>
-      <span class="text-zinc-500 text-sm mt-2 inline-block">Last update: 2 days ago</span>
-    </div>
+<Layout title="Admin Dashboard">
+  <div class="p-8">
+    <h1 class="text-3xl font-bold mb-8">Shades World Admin</h1>
+    <p>Welcome to admin. Use the product management tools below.</p>
+    <!-- Add your existing admin components/forms here -->
+    <a href="/admin/login" class="text-blue-600">Login</a>
   </div>
-
-  <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-xl font-bold">Recent Updates</h2>
-      <a href="/admin/updates" class="text-sm text-amber-400 hover:text-amber-300 transition">View All →</a>
-    </div>
-    <div class="space-y-4">
-      <div class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-700">
-        <div class="flex justify-between items-start mb-2">
-          <h4 class="font-medium text-amber-400">Version 1.2.0 - Checkout Added</h4>
-          <span class="text-xs text-zinc-500">May 17, 2026</span>
-        </div>
-        <p class="text-sm text-zinc-400">Added new secure checkout functionality for smoother transactions.</p>
-      </div>
-      <div class="p-4 bg-zinc-800/50 rounded-xl border border-zinc-700">
-        <div class="flex justify-between items-start mb-2">
-          <h4 class="font-medium text-amber-400">Version 1.1.0 - New Shades</h4>
-          <span class="text-xs text-zinc-500">May 10, 2026</span>
-        </div>
-        <p class="text-sm text-zinc-400">Introduced the new Summer collection of premium sunglasses.</p>
-      </div>
-    </div>
-  </div>
-</AdminLayout>
+</Layout>
