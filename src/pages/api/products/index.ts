@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getProducts, saveProducts } from '../../../utils/db.ts';
+import { withAuth } from '../../../utils/auth.ts';
 
 export const prerender = false;
 
@@ -20,7 +21,7 @@ export const GET: APIRoute = async () => {
   }
 };
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST = withAuth(async ({ request }) => {
   try {
     const data = await request.json();
     
@@ -38,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
     
     const newProduct = {
       id: Math.max(0, ...products.map((p: any) => p.id)) + 1,
-      slug: data.name.toLowerCase().replace(/\s+/g, '-'),
+      slug: data.name.toLowerCase().replace(/\/s+/g, '-'),
       name: data.name.trim(),
       price: parseInt(data.price),
       category: data.category,
@@ -65,4 +66,4 @@ export const POST: APIRoute = async ({ request }) => {
       status: 500,
     });
   }
-};
+});
