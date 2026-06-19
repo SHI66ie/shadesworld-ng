@@ -5,6 +5,6 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   site: 'https://shadesworld.ng',
   integrations: [tailwind()],
-  output: 'hybrid',
+  output: 'server',  // Changed from hybrid to server for better dynamic route support
   adapter: netlify(),
 });
