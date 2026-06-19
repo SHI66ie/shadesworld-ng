@@ -5,25 +5,45 @@ import AdminLayout from '../../layouts/AdminLayout.astro';
 <AdminLayout title="Admin Login">
   <div class="max-w-md mx-auto mt-20">
     <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800">
-      <h1 class="text-3xl font-bold text-center mb-8 text-amber-400">Shades Admin</h1>
-      <p id="message" class="text-red-400 text-center mb-6 hidden"></p>
-      
-      <button 
-        onclick="handleLogin()"
-        class="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 rounded-xl transition text-lg">
-        Sign in with Netlify
-      </button>
-      
-      <p class="text-xs text-zinc-500 text-center mt-8">
-        Protected area for inventory management
-      </p>
+      <h1 class="text-3xl font-bold text-center mb-2 text-amber-400">Shades Admin</h1>
+      <p class="text-center text-zinc-400 mb-8">Sign in to manage inventory</p>
+
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-sm text-zinc-400 mb-1">Username</label>
+          <input type="text" id="username" value="admin" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white" required />
+        </div>
+        <div>
+          <label class="block text-sm text-zinc-400 mb-1">Password</label>
+          <input type="password" id="password" value="shades2026" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-white" required />
+        </div>
+        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 rounded-xl transition">
+          Sign In
+        </button>
+      </form>
+
+      <p id="error" class="text-red-400 text-sm text-center mt-4 hidden"></p>
+      <p class="text-xs text-zinc-500 text-center mt-6">Default: admin / shades2026 (change in production)</p>
     </div>
   </div>
 </AdminLayout>
 
 <script>
-  function handleLogin() {
-    // Redirect to Netlify Identity login
-    window.location.href = '/.netlify/identity/login';
-  }
+  const form = document.getElementById('login-form');
+  const errorEl = document.getElementById('error');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simple client-side check (replace with real auth later)
+    if (username === 'admin' && password === 'shades2026') {
+      localStorage.setItem('adminLoggedIn', 'true');
+      window.location.href = '/admin';
+    } else {
+      errorEl.textContent = 'Invalid credentials';
+      errorEl.classList.remove('hidden');
+    }
+  });
 </script>
